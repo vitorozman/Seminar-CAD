@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amsfonts}
+\usepackage{enumitem}
+\pagestyle{empty}
+\begin{document}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+
+
+\title{Diskretne Coonsove ploskveva urnikov}
+\author{Matej Rojec, Vito Rozman}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\section{Uvod in motivacija}
+
+\subsection{Uvod v Bézierjeve ploskeve}
+Bézierjevo ploskev $\mathbf{p} : [0,1]^2 \rightarrow \R^3$ iz tenzorskega produkta stopnje $(m, n) \in \N \times \N$  
+definiramo s parametrizacijo:
+$$\mathbf{p}(u,v) := \sum_{i=0}^m \sum_{j=0}^n \mathbf{b}_{i,j} B_i^m(u)B_j^n(v),$$
+kjer sta $u,v$ iz enotskega kvadrata, t.j $(u,v) \in [0,1]^2$ ter $(\frac{i}{m}, \frac{j}{n})$
+domenske točke, ki ustrezajo kontrolni točki $\mathbf{b}_{i,j}$.
+
+Pri fiksnem $v$, množica $\{\mathbf{b} (u,v) \mid u \in [0,1]  \}$ predstavlja 
+kontrolnimi točkami    $$\sum_{j=0}^n \mathbf{b}_{i,j} B_j^n(v), \qquad i=0,1,\ldots,m$$
+
+ki so izračunane kot točke na Bézierjevih krivuljah stopnje $n$ pri parametru $v$.
+
+
+\subsection{Coonsove ploskve}
+
+Denimo, da imamo podane kontrole točke $\mathbf{b}_{i,j},~ i=0,\ldots,m,~ j=0,\ldots,n$.
+Te določajo štiri robne krivulje 
+$$\mathbf{x}(u,0),\qquad \mathbf{x}(u,1),\qquad \mathbf{x}(0,1),\qquad \mathbf{x}(1,v),$$
+
+kjer je domena enotski kvadrat, t.j.~$(u,v) \in [0,1]^2$.
+Te omejujejo iskano ploskev $\mathbf{p}$ iz tenzorskega produkta stopnje $(n,m)$.
+Kontrolne točke
+
+% tole je treba še mal popravt
+\begin{align*}
+      &\mathbf{b}_{0,0} &\mathbf{b}_{0,1} & &\ldots & &\mathbf{b}_{0,m-1} & &\mathbf{b}_{0,m} \\
+      &\mathbf{b}_{1,0}  &  & &  & &  & &\mathbf{b}_{1,m} \\
+      &\vdots  &  &  & &  & & &\vdots\\
+      &\mathbf{b}_{n-1,0}  &  &  & &  & &  &\mathbf{b}_{n-1,m-1} \\ \\
+      &\mathbf{b}_{n,0} &\mathbf{b}_{n,1} & &\ldots & &\mathbf{b}_{n,m-1} & &\mathbf{b}_{n,m} \\
+\end{align*}
+
+\end{document}
