@@ -30,8 +30,8 @@ kjer sta $u,v$ iz enotskega kvadrata, t.j $(u,v) \in [0,1]^2$ ter $(\frac{i}{m},
 domenske točke, ki ustrezajo kontrolni točki $\mathbf{b}_{i,j}$.
 
 Pri fiksnem $v$, množica $\{\mathbf{b} (u,v) \mid u \in [0,1]  \}$ predstavlja 
-kontrolnimi točkami    $$\sum_{j=0}^n \mathbf{b}_{i,j} B_j^n(v), \qquad i=0,1,\ldots,m$$
-
+kontrolnimi točkami
+$$\sum_{j=0}^n \mathbf{b}_{i,j} B_j^n(v), \qquad i=0,1,\ldots,m,$$
 ki so izračunane kot točke na Bézierjevih krivuljah stopnje $n$ pri parametru $v$.
 
 
@@ -39,19 +39,55 @@ ki so izračunane kot točke na Bézierjevih krivuljah stopnje $n$ pri parametru
 
 Denimo, da imamo podane kontrole točke $\mathbf{b}_{i,j},~ i=0,\ldots,m,~ j=0,\ldots,n$.
 Te določajo štiri robne krivulje 
-$$\mathbf{x}(u,0),\qquad \mathbf{x}(u,1),\qquad \mathbf{x}(0,1),\qquad \mathbf{x}(1,v),$$
-
-kjer je domena enotski kvadrat, t.j.~$(u,v) \in [0,1]^2$.
 Te omejujejo iskano ploskev $\mathbf{p}$ iz tenzorskega produkta stopnje $(n,m)$.
 Kontrolne točke
-
-% tole je treba še mal popravt
 \begin{align*}
-      &\mathbf{b}_{0,0} &\mathbf{b}_{0,1} & &\ldots & &\mathbf{b}_{0,m-1} & &\mathbf{b}_{0,m} \\
-      &\mathbf{b}_{1,0}  &  & &  & &  & &\mathbf{b}_{1,m} \\
+      &\mathbf{b}_{0,0} &\mathbf{b}_{1,0} & &\ldots & &\mathbf{b}_{m-1,0} & &\mathbf{b}_{m,0} \\
+      &\mathbf{b}_{0,1}  &  & &  & &  & &\mathbf{b}_{m,1} \\
       &\vdots  &  &  & &  & & &\vdots\\
-      &\mathbf{b}_{n-1,0}  &  &  & &  & &  &\mathbf{b}_{n-1,m-1} \\ \\
-      &\mathbf{b}_{n,0} &\mathbf{b}_{n,1} & &\ldots & &\mathbf{b}_{n,m-1} & &\mathbf{b}_{n,m} \\
+      &\mathbf{b}_{0,n-1}  &  &  & &  & &  &\mathbf{b}_{m,n-1} \\ 
+      &\mathbf{b}_{0,n} &\mathbf{b}_{1,n} & &\ldots & &\mathbf{b}_{m-1,n} & &\mathbf{b}_{m,n} \\
 \end{align*}
+določajo štiri Bézierjev krivulje: 
+\begin{align*}
+   &\mathbf{p}(u,0) =\sum_{i=0}^m \mathbf{b}_{i,0} B_i^n(u),  \\
+   &\mathbf{p}(u,1) =\sum_{i=0}^m \mathbf{b}_{i,n} B_i^n(u),  \\
+   &\mathbf{p}(0,v) =\sum_{j=0}^n \mathbf{b}_{0,j} B_j^n(v),  \\
+   &\mathbf{p}(1,v) =\sum_{j=0}^n \mathbf{b}_{m,j} B_j^n(v),  \\
+\end{align*}
+kjer je domena enotski kvadrat, t.j.~$(u,v) \in [0,1]^2$.
+Kontrolne točke torej omejujejo ploskev $\mathbf{p}$. 
+Sedaj potrebujemo definirati še ostale kontrolne točke 
+$\mathbf{b}_{i,j},~ i=1,\ldots, m-1~, j=1,\ldots,n-1$. 
+V ta namen definiramo tri dodatne ploskve:
+\begin{enumerate}
+   \item Prva je Bézierjeva ploskev stopnje $(m, 1)$, ki je kot ploskev stopnje $(m,n)$ podana s kontrolnimi točkami:
+   $$\mathbf{b}_{i,j}^{(1)} = \left(1-\frac{j}{n}  \right) \mathbf{b}_{i,0} + \frac{j}{n} \mathbf{b}_{i,n} $$
+   \item Druga je Bézierjeva ploskev stopnje $(1, n)$, ki je kot ploskev stopnje $(m,n)$ podana s kontrolnimi točkami:
+   $$\mathbf{b}_{i,j}^{(2)} = \left(1-\frac{i}{m}  \right) \mathbf{b}_{0,j} + \frac{i}{m} \mathbf{b}_{m,j} $$
+   \item Tretja je Bézierjeva ploskev stopnje $(1, 1)$, ki je kot ploskev stopnje $(m,n)$ podana s kontrolnimi točkami:
+   $$
+   \mathbf{b}_{i,j}^{(3)} = \left(1-\frac{i}{m}  \right) \left(1-\frac{j}{n}  \right) \mathbf{b}_{0,0} 
+         + \frac{i}{m} \left(1-\frac{j}{n}  \right) \mathbf{b}_{m,0}
+         + \left(1-\frac{i}{m}  \right) \frac{j}{n}  \mathbf{b}_{0,n} 
+         + \frac{i}{m} \frac{j}{n} \mathbf{b}_{m,n} 
+   $$
+\end{enumerate}
+Coonsova ploskev $\mathbf{p}$ je definirana s kontrolnimi točkami 
+$$\mathbf{b}_{i,j} := \mathbf{b}_{i,j}^{(1)}+\mathbf{b}_{i,j}^{(2)}+\mathbf{b}_{i,j}^{(3)}.$$
+
+% Dodamo primer in sliko 
+
+\section{Lastnosti Coonsovih ploskev}
+
+Coonsova ploskve minimzirajo zasuk, definiran kot:
+\begin{equation}
+   \label{eq:min}
+   \int_{[0,1]^2} \left( \frac{\partial^2}{\partial u \partial v}\mathbf{p}(u,v) \right) dS.
+\end{equation}
+Torej coonsova ploskve doseže minimum izraza \eqref{eq:min}.
+
+Posledica tega je, da so coonsova ploskve lahko v primerih preveč ravne in ne interpolirajo dobro kontrolnih točk.
+
 
 \end{document}
