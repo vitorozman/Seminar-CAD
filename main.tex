@@ -13,6 +13,8 @@
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
 
 \title{Diskretne Coonsove ploskve}
 \author{Matej Rojec, Vito Rozman}
@@ -128,5 +130,36 @@ Robovi pravokotnika $P$ definirajo štiri robne krivulje.
 Sedaj tvorimo novo Coonsovo ploskev podano z robnimi krivuljami pravokotnika $P$.
 Ta ploskev je enaki Coonsovi ploskvi prvotne krivulje zožane na pravokotnik $P$.
 
-
+Predpostavimo, da imamo podano ploskev $\mathbf{p}$ iz tenzorskega produkta stopnje $(n,m)$.
+Oglejmo si poljubno $3\times 3$ podmrežo podano kot:
+\begin{align*}
+      &\mathbf{b}_{i-1,j-1} &\mathbf{b}_{i,j-1}& &\mathbf{b}_{i+1,j-1} \\
+      &\mathbf{b}_{i-1,j} &\mathbf{b}_{i,j}& &\mathbf{b}_{i+1,j}. \\
+      &\mathbf{b}_{i-1,j+1} &\mathbf{b}_{i,j+1}& &\mathbf{b}_{i+1,j+1} \\ 
+\end{align*}
+V primeru, da poznamo robne točke $3\times 3$ mreže, lahko po zgoraj povedanem
+notranjo točko $\mathbf{b}_{i,j}$ izačunamo kot:
+\begin{align*}
+   \mathbf{b}_{i,j} =&-\frac{1}{4}(\mathbf{b}_{i-1,j-1}+\mathbf{b}_{i+1,j-1}+\mathbf{b}_{i-1,j+1}+\mathbf{b}_{i+1,j+1}) \\
+   &+\frac{1}{2}(\mathbf{b}_{i,j-1}+\mathbf{b}_{i-1,j}+\mathbf{b}_{i+1,j}+\mathbf{b}_{i,j+1}).\\
+\end{align*}
+To lahko zapišemo s pomočjo t.i. maske kot:
+\begin{align*}
+                                        & &-1  & &2 & &-1 \\
+   &\mathbf{b}_{i,j}=\frac{1}{4} \times & 2 & & \sbullet & & 2 .\\
+                                        & &-1 & &2 & &-1 \\ 
+\end{align*}
+Mreža je sestavljena iz $(m+1)\times(n+1)$ kontrolnih točk, od teh ne poznamo 
+$(m-1)\times(n-1)$ izmed njih. 
+Za vsako izmed $(m-1)\times(n-1)$ imamo natanko eno enačbo, ki je določena z zgoraj opisano masko.
+To je seveda zelo časovno zahtevna metoda, da izračunamo kontrolne točke Coonsove ploskve,
+ampak nam da nov vpogled, kako bi lahko izračunali kontrolne točke Coonsove ploskve.
+Vidimo, da so kontrolne točke Coonsove ploskve poseben primer maske oblike:
+\begin{align*}
+   & &\alpha  & &\beta & &\alpha \\
+&\mathbf{b}_{i,j}= \times & \beta & & \sbullet & & \alpha,\\
+   & &\alpha & &\beta & &\alpha \\ 
+\end{align*}
+kjer je $(\alpha, \beta) = (-0.25, 0.5)$. To nam, da idejo da bi lahko izbrali različne 
+parametra $\alpha$ in $\beta$ sprmenili. Vedno bomo privzeli, da velja $4\alpha + 4\beta = 1$.
 \end{document}
