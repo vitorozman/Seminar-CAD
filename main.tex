@@ -7,7 +7,6 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{subfigure}
-
 \pagenumbering{roman}
 
 \begin{document}
@@ -111,7 +110,7 @@ Iz slike \ref{fig:whatever} opazimo, da so ploskev zelo ravna. Več o tem bomo k
 Coonsova ploskve minimzirajo zasuk, definiran kot:
 \begin{equation}
    \label{eq:min}
-   \int_{[0,1]^2} \left( \frac{\partial^2}{\partial u \partial v}\mathbf{p}(u,v) \right) dS.
+   \int_{[0,1]^2} \left( \frac{\partial^2}{\partial u \partial v}\mathbf{p}(u,v) \right)^2 dS.
 \end{equation}
 Torej coonsova ploskev doseže minimum izraza \eqref{eq:min}.
 Posledica tega je, da so Coonsova ploskve lahko v primerih preveč ravne in ne interpolirajo dobro kontrolnih točk.

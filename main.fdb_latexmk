@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1670154364 "c:/Users/matej/Documents/Seminar-CAGD/main.tex" "main.pdf" "main" 1670154365
+["pdflatex"] 1670163419 "c:/Users/matej/Documents/Seminar-CAGD/main.tex" "main.pdf" "main" 1670163420
   "C:/Users/matej/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1670152410 82686 2381c3433487640bf26aa76a10db7eb2 ""
   "C:/Users/matej/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1667933356 10788010 4bbfafdb2e3e09520b6f2d1e7f8c3597 ""
   "C:/Users/matej/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc" 1256929440 2375 baa924870cfb487815765f9094cf3728 ""
@@ -84,12 +84,12 @@
   "C:/Users/matej/AppData/Local/Programs/MiKTeX/tex/latex/lm/t1lmr.fd" 1430470946 1867 996fe743d88a01aca041ed22cc10e1bb ""
   "C:/Users/matej/AppData/Local/Programs/MiKTeX/tex/latex/subfigure/subfigure.cfg" 1114278970 2114 42ba738bf6f1cec796106a69840777a4 ""
   "C:/Users/matej/AppData/Local/Programs/MiKTeX/tex/latex/subfigure/subfigure.sty" 1114278970 14815 1d3da78e0f66f3c62133fbabffd13cf5 ""
-  "c:/Users/matej/Documents/Seminar-CAGD/main.tex" 1670154363 5443 db211bf31ec51f18a2819e9ad8cef0d8 ""
+  "c:/Users/matej/Documents/Seminar-CAGD/main.tex" 1670163418 5443 52dcaedc20e9c54996ad08cc3a52c735 ""
   "dodatne_kont_t.png" 1670152059 58202 5ae18b310abe6b289e11479e797a26f8 ""
-  "main.aux" 1670154365 1429 5f80895f5ffa030847e5942ab9597b12 "pdflatex"
-  "main.lof" 1670154365 394 65686e918c3c7a600e929aa77df0031e "pdflatex"
-  "main.tex" 1670154363 5443 db211bf31ec51f18a2819e9ad8cef0d8 ""
-  "main.toc" 1670154365 472 d70dcbd4d66bebeb5376fff76f011796 "pdflatex"
+  "main.aux" 1670163420 1429 5f80895f5ffa030847e5942ab9597b12 "pdflatex"
+  "main.lof" 1670163420 394 65686e918c3c7a600e929aa77df0031e "pdflatex"
+  "main.tex" 1670163418 5443 52dcaedc20e9c54996ad08cc3a52c735 ""
+  "main.toc" 1670163420 472 d70dcbd4d66bebeb5376fff76f011796 "pdflatex"
   "ogrodje.png" 1670152191 38405 ba238ec236e54eaaacf19f8e2cded5e9 ""
   "primer_krivulje.png" 1670152222 159702 2bf2cac5681066ff0b6ad9880b80d4ee ""
   (generated)
