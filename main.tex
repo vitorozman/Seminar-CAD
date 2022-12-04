@@ -106,14 +106,21 @@ Iz slike \ref{fig:whatever} opazimo, da so ploskev zelo ravna. Več o tem bomo k
 
 \section{Lastnosti Coonsovih ploskev}
 
+\subsection{Minimziraje zasuka}
 Coonsova ploskve minimzirajo zasuk, definiran kot:
 \begin{equation}
    \label{eq:min}
    \int_{[0,1]^2} \left( \frac{\partial^2}{\partial u \partial v}\mathbf{p}(u,v) \right) dS.
 \end{equation}
-Torej coonsova ploskve doseže minimum izraza \eqref{eq:min}.
+Torej coonsova ploskev doseže minimum izraza \eqref{eq:min}.
+Posledica tega je, da so Coonsova ploskve lahko v primerih preveč ravne in ne interpolirajo dobro kontrolnih točk.
+Taka ploskev prav tako zadošča Euler-Lagrangovi parcialni diferencialni enačbi, torej velja:
+\begin{equation}
+   \label{eq:pde}
+    \frac{\partial^4}{\partial u^2 \partial v^2}\mathbf{p}(u,v) = 0.
+\end{equation}
 
-Posledica tega je, da so coonsova ploskve lahko v primerih preveč ravne in ne interpolirajo dobro kontrolnih točk.
+\subsection{Ohranjanje Coonsove ploskve}
 
 
 \end{document}
