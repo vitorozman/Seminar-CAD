@@ -1,7 +1,7 @@
 \babel@toc {slovene}{}\relax 
-\contentsline {section}{\numberline {1}Uvod in motivacija}{3}{}%
-\contentsline {subsection}{\numberline {1.1}Uvod v Bézierjeve ploskeve}{3}{}%
-\contentsline {subsection}{\numberline {1.2}Coonsove ploskve}{3}{}%
-\contentsline {section}{\numberline {2}Lastnosti Coonsovih ploskev}{5}{}%
-\contentsline {subsection}{\numberline {2.1}Minimziraje zasuka}{5}{}%
-\contentsline {subsection}{\numberline {2.2}Ohranjanje Coonsove ploskve}{6}{}%
+\contentsline {section}{\numberline {1}Uvod in motivacija}{iii}{}%
+\contentsline {subsection}{\numberline {1.1}Uvod v Bézierjeve ploskeve}{iii}{}%
+\contentsline {subsection}{\numberline {1.2}Coonsove ploskve}{iii}{}%
+\contentsline {section}{\numberline {2}Lastnosti Coonsovih ploskev}{v}{}%
+\contentsline {subsection}{\numberline {2.1}Minimziraje zasuka}{v}{}%
+\contentsline {subsection}{\numberline {2.2}Ohranjanje Coonsove ploskve}{vi}{}%
