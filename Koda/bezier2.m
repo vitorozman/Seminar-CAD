@@ -9,7 +9,7 @@ function [bx ,by ,bz] = bezier2 (Bx ,By ,Bz ,u,v)
 % Vhodni podatki :
 % Bx , By , Bz matrike velikosti n+1 x m+1, ki dolocajo
 % koordinate kontrolnih tock ,
-% u, v vrstici dolžine M in N, ki predstavljata
+% u, v vrstici dolï¿½ine M in N, ki predstavljata
 % parametre v smereh u in v.
 %
 % Izhodni podatki :
@@ -17,31 +17,27 @@ function [bx ,by ,bz] = bezier2 (Bx ,By ,Bz ,u,v)
 % tocke na Bezierjevi ploskvi :
 % [bx(J,I) by(J,I) bz(J,I)] je tocka pri
 % parametrih u(I) in v(J).
-m = size(Bx,2)-1;
-n = size(Bx,1)-1;
-B = zeros(n+1, m+1, 3);
-B(:,:,1) = Bx;
-B(:,:,2) = By;
-B(:,:,3) = Bz;
+
+
 M = length(u);
 N = length(v);
-b = zeros(N,M,3);
+[~, m] = size(Bx);
 
-for ui = 1:length(u)
-    for vj = 1:length(v)
-        for j = 1:3
-            dB = zeros(m+1);
-            for i = 1:m+1
-                x = decasteljau(B(:,i,j), v(vj));
-                dB(i) = x(1,n+1);
-            end
-            x = decasteljau(dB, u(ui));
-            b(vj,ui,j) = x(1,m+1);
+B = NaN(m, 3);
+
+bx = NaN(N, M);
+by = NaN(N, M);
+bz = NaN(N, M);
+for k = 1:M
+    for l = 1:N 
+        for i = 1:m 
+            B(i,:) = bezier([Bx(:,i) By(:,i) Bz(:,i)], v(l));
         end
+        Bu = bezier(B, u(k));
+        bx(l,k) = Bu(1,1);
+        by(l,k) = Bu(1,2);
+        bz(l,k) = Bu(1,3);
     end
 end
 
-bx = b(:,:,1);
-by = b(:,:,2);
-bz = b(:,:,3);
 end
