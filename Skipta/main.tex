@@ -157,12 +157,23 @@ ampak nam da nov vpogled, kako bi lahko izračunali kontrolne točke Coonsove pl
 Vidimo, da so kontrolne točke Coonsove ploskve poseben primer maske oblike:
 \begin{align*}
    & &\alpha  & &\beta & &\alpha \\
-&\mathbf{b}_{i,j}= \times & \beta & & \sbullet & & \alpha,\\
+&\mathbf{b}_{i,j}= & \beta & & \sbullet & & \alpha,\\
    & &\alpha & &\beta & &\alpha \\ 
 \end{align*}
 kjer je $(\alpha, \beta) = (-0.25, 0.5)$. To nam, da idejo da bi lahko izbrali različne 
 parametra $\alpha$ in $\beta$ sprmenili. Vedno bomo privzeli, da velja $4\alpha + 4\beta = 1$, saj 
 tako ohranjamo afinost maske. S perturbiranjem parametrov 
 $\alpha$ in $\beta$ dobimo torej nov razred kontrolnih shem. 
-Imenujemo jih stalne kontrolne točke.
+Imenujemo jih stalne kontrolne točke. V članku \cite{članek1} so raziskovali
+vpliv $\alpha$ na optimalno oblike ploskve. Ugotovili so, da za izbrana $m$ in $n$
+ni vedno ene optimalne vrednosti za $\alpha$, ki bo dala dobro obliko ploskve.
+Namreč optimalna vrednost $\alpha$ je odvisna od oblike robnih krivulj.
+
+\newpage
+
+\begin{thebibliography}{99}
+   \bibitem{članek1}
+   G.~Farin, F.~Hansford, \emph{Discrete Coons patches}, 
+   % popravi Morgan \& Claypool Publishers, 2018.
+\end{thebibliography}
 \end{document}
