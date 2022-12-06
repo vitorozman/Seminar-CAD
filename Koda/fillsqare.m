@@ -2,7 +2,7 @@ function BB = fillsqare(B, alfa, beta)
 
 % vektoriziramo vhodno shemo kotntorlnih tock
 [n, m] = size(B);
-b = reshape(B,1,[])';
+b = reshape(B.',1,[])';
 
 A = zeros(n*m,n*m);
 
@@ -35,7 +35,7 @@ for i = 0:m
 end
 
 BB = A\b;
-BB = reshape(BB, n, m);
+BB = reshape(BB, m, n)';
 
 
 

@@ -21,3 +21,7 @@ B3 = [1 1 1;
     1 0 1;
     1 1 1];
 BB = fillsqare(B3, 1, 1);
+[Bx,By,Bz] = coons(Bx,By,Bz);
+Bx
+BB = fillsqare(Bx, -0.25, 0.5);
+BB
