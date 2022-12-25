@@ -7,6 +7,7 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{subfigure}
+\usepackage{mathtools}
 \pagenumbering{roman}
 
 \begin{document}
@@ -46,7 +47,24 @@ Torej podane imamo robne krivulje $$x(u,0), x(u,1), x(0,v),  x(1,u)$$, kjer lahk
 splošnost predpostavimo da je domena ploskve $x(u,v)$ enotni kvadrat $0 <= u,v <=1$. Znana rešitev 
 tega problema je bilinearna mešana Coonsova ploskev, ki je interpolirana z robnimi 
 krivuljami, kot: 
-$$ FORMULA 1.$$ 
+\begin{align*}
+   \label{continiusCons}
+   \mathbf{x}(u,v) =& (1-u)\mathbf{x}(0,v) +u\mathbf{x}(1,v)\\
+    & + (1-v)\mathbf{x}(u,0) +v\mathbf{x}(u,v) \\
+   & - 
+   \begin{bmatrix} 
+      1-u & u 
+   \end{bmatrix}
+   \begin{bmatrix} 
+      \mathbf{x}(0,0)& \mathbf{x}(0,1)\\
+      \mathbf{x}(1,0)&\mathbf{x}(1,1) 
+   \end{bmatrix}
+   \begin{bmatrix}
+      1-v\\
+      v
+   \end{bmatrix}
+\end{align*}
+
 
 \section{Diskretne Coonsove ploskve}
 V bolj modernih uporabah CAD, so mejne krivulje Bezierjeve polinomske krivulje, 
@@ -70,14 +88,19 @@ ki jih napenjajo kontrolni poligoni.
 
 V tem primeru imamo podane kontrolne točke $b_{i,j}$ opremljene z 
 parametroma $(u,v)$ predstavljen s shemo: 
-\begin{align*}
-    &\mathbf{b}_{0,0} &\mathbf{b}_{1,0} & &\ldots & &\mathbf{b}_{m-1,0} & &\mathbf{b}_{m,0} \\
-    &\mathbf{b}_{0,1}  &  & &  & &  & &\mathbf{b}_{m,1} \\
-    &\vdots  &  &  & &  & & &\vdots\\
-    &\mathbf{b}_{0,n-1}  &  &  & &  & &  &\mathbf{b}_{m,n-1} \\ 
-    &\mathbf{b}_{0,n} &\mathbf{b}_{1,n} & &\ldots & &\mathbf{b}_{m-1,n} & &\mathbf{b}_{m,n} \\
-\end{align*}
-Zgornji FORMULA 1 primer lahko sedaj diskritiziramo in robne krivulje zapišemo s štirimi 
+$$
+\begin{matrix}
+   \mathbf{b}_{0,0}  &\mathbf{b}_{1,0} & \ldots &\mathbf{b}_{m-1,0} &\mathbf{b}_{m,0} \\
+   \mathbf{b}_{0,1}  &                 &        &                   &\mathbf{b}_{m,1} \\
+   \vdots            &                 &        &                   &  \vdots\\
+   \mathbf{b}_{0,n-1} &                &        &                    &\mathbf{b}_{m,n-1} \\ 
+   \mathbf{b}_{0,n}  &\mathbf{b}_{1,n} & \ldots &\mathbf{b}_{m-1,n} &\mathbf{b}_{m,n} 
+\end{matrix}
+$$
+
+   
+
+Sedaj lahko primer diskritiziramo in robne krivulje zapišemo s štirimi 
 Bezierjevimi krivuljami:
 \begin{align*}
     &\mathbf{p}(u,0) =\sum_{i=0}^m \mathbf{b}_{i,0} B_i^n(u), \qquad
@@ -85,10 +108,25 @@ Bezierjevimi krivuljami:
     &\mathbf{p}(0,v) =\sum_{j=0}^n \mathbf{b}_{0,j} B_j^n(v), \qquad
     \mathbf{p}(1,v) =\sum_{j=0}^n \mathbf{b}_{m,j} B_j^n(v),  \\
  \end{align*}
-Tako se notranje toče izražajo z na sledeč način: 
-$$FORMULA,$$
-kjer $0 < i < m$ in $0< j <n$. Izkaže se, da je kontrolni poligon ploskve, 
-ki jo omejujejo robne krivulje enak kontrolnemu poligonu, ki ga dobimo z opisano metodo. 
+Tako se notranje toče izražajo z formulo: 
+\begin{align*}
+   \mathbf{b}_{i,j} =& (1 - \frac{i}{m})\mathbf{b}_{0,j} +\frac{i}{m}\mathbf{b}_{m,j}\\
+    & + (1 - \frac{j}{n})\mathbf{b}_{i,0} +\frac{j}{n}\mathbf{b}_{i,n}\ \\
+   & - 
+   \begin{bmatrix} 
+      1 - \frac{i}{m} & \frac{i}{m}
+   \end{bmatrix}
+   \begin{bmatrix} 
+      \mathbf{b}_{0,0} & \mathbf{b}_{0,1}\\
+      \mathbf{b}_{1,0} & \mathbf{b}_{1,1}
+   \end{bmatrix}
+   \begin{bmatrix}
+      1 - \frac{j}{n}\\
+      \frac{j}{n}
+   \end{bmatrix}
+\end{align*}
+za $i = 1,2,\dots,m-1$ in $j = 1,2,\dots,n-1$. Izkaže se, da je kontrolni poligon ploskev, 
+ki jo omejujejo robne krivulje,   enak kontrolnemu poligonu, ki ga dobimo z opisano metodo. 
 »Morda zanimivo: za določene oblike rabimo definirati samo robne krivulje«.
 
 \begin{figure}[ht!]
@@ -115,71 +153,109 @@ ki jo omejujejo robne krivulje enak kontrolnemu poligonu, ki ga dobimo z opisano
 
 \section{Lastnosti Coonsovih ploskev}
 
-\subsection{Minimziraje zasuka}
-Coonsova ploskve minimzirajo zasuk, definiran kot:
-\begin{equation}
-   \label{eq:min}
-   \int_{[0,1]^2} \left( \frac{\partial^2}{\partial u \partial v}\mathbf{p}(u,v) \right)^2 dS.
-\end{equation}
-Torej coonsova ploskev doseže minimum izraza.
-Posledica tega je, da so Coonsova ploskve lahko v primerih preveč ravne in ne interpolirajo dobro kontrolnih točk.
-Taka ploskev prav tako zadošča Euler-Lagrangovi parcialni diferencialni enačbi, torej velja:
-\begin{equation}
-   \label{eq:pde}
-    \frac{\partial^4}{\partial u^2 \partial v^2}\mathbf{p}(u,v) = 0.
-\end{equation}
+%\subsection{Minimziraje zasuka}
+%Coonsova ploskve minimzirajo zasuk, definiran kot:
+%\begin{equation}
+%   \label{eq:min}
+%   \int_{[0,1]^2} \left( \frac{\partial^2}{\partial u \partial v}\mathbf{p}(u,v) \right)^2 dS.
+%\end{equation}
+%Torej coonsova ploskev doseže minimum izraza.
+%Posledica tega je, da so Coonsova ploskve lahko v primerih preveč ravne in ne interpolirajo dobro kontrolnih točk.
+%Taka ploskev prav tako zadošča Euler-Lagrangovi parcialni diferencialni enačbi, torej velja:
+%\begin{equation}
+%   \label{eq:pde}
+%    \frac{\partial^4}{\partial u^2 \partial v^2}\mathbf{p}(u,v) = 0.
+%\end{equation}
 
 \subsection{Ohranjanje Coonsove ploskve}
 
-Izberimo dve točki $(u_0, v_0)$ ter $(u_1,v_1)$, ki definirajo pravokotnik $P$
-v domeni $[0,1]^2$ Coonsove ploskve. 
-Robovi pravokotnika $P$ definirajo štiri robne krivulje.
-Sedaj tvorimo novo Coonsovo ploskev podano z robnimi krivuljami pravokotnika $P$.
-Ta ploskev je enaki Coonsovi ploskvi prvotne krivulje zožane na pravokotnik $P$.
+Naj bo Cooncova ploskev definirana nad domeno $D = [0,1]^2$. Lahko izberemo dve 
+točki $(u_0,v_0)$ in $(u_1,v_1)$ ki razpenjata pravokotnik $R$ v domeni $D$. 
+Štiri mejne krivulje pod-Consove ploskve definiranega na $R$ se preslikajo 
+v štiri krivulje na prvotno Consovo ploskev. Izkaže se da pod-Coonsova ploskev 
+definirana na $R$ je prvotna Coonsova ploskev zožana na območje $R$. To načelo 
+lahko uporabimo na diskretni $3 \times 3$ Consovi ploskivi
+$$
+\begin{matrix} 
+   \mathbf{b}_{i-1,j-1} & \mathbf{b}_{i-1,j} & \mathbf{b}_{i-1,j+1}\\
+   \mathbf{b}_{i,j-1} & \mathbf{b}_{i,j} & \mathbf{b}_{i,j+1}\\
+   \mathbf{b}_{i+1,j-1} & \mathbf{b}_{i+1,j} & \mathbf{b}_{i+1,j+1}
+\end{matrix}
+$$ 
+Če poznamo robne točke lahko notranjo točko $\mathbf{b}_{i,j}$ določimo na sledeč način: 
+\begin{align*}
+   \mathbf{b}_{i,j} =& -\frac{1}{4}(\mathbf{b}_{i-1,j-1} + \mathbf{b}_{i+1,j-1} +
+      \mathbf{b}_{i-1,j+1} + \mathbf{b}_{i+1,j+1}) \\
+      &+\frac{1}{2}(\mathbf{b}_{i-1,j} + \mathbf{b}_{i,j-1}+
+      \mathbf{b}_{i,j+1} + \mathbf{b}_{i+1,j}).\\
+\end{align*}
+kar lahko krajše zapišemo z masko: 
+$$
+\mathbf{b}_{i,j} = -\frac{1}{4} \times 
+\begin{matrix*}[r]
+-1 && 2 && -1 \\
+2 && \sbullet && 2\\
+-1 && 2 && -1
+\end{matrix*}
+$$
+Ker je mreža sestavljena iz $(m+1)\times(n+1)$ kontrolnih točk, dane pa imamo samo robne
+točke lahko ostalih $(m-1)\times(n-1)$ enlično določimo z zgornjo masko. Določitev točk se prvede
+na sistem $(m+1)\times(n+1)$ linearnih enačb.
 
-Predpostavimo, da imamo podano ploskev $\mathbf{p}$ iz tenzorskega produkta stopnje $(n,m)$.
-Oglejmo si poljubno $3\times 3$ podmrežo podano kot:
-\begin{align*}
-      &\mathbf{b}_{i-1,j-1} &\mathbf{b}_{i,j-1}& &\mathbf{b}_{i+1,j-1} \\
-      &\mathbf{b}_{i-1,j} &\mathbf{b}_{i,j}& &\mathbf{b}_{i+1,j}. \\
-      &\mathbf{b}_{i-1,j+1} &\mathbf{b}_{i,j+1}& &\mathbf{b}_{i+1,j+1} \\ 
-\end{align*}
-V primeru, da poznamo robne točke $3\times 3$ mreže, lahko po zgoraj povedanem
-notranjo točko $\mathbf{b}_{i,j}$ izačunamo kot:
-\begin{align*}
-   \mathbf{b}_{i,j} =&-\frac{1}{4}(\mathbf{b}_{i-1,j-1}+\mathbf{b}_{i+1,j-1}+\mathbf{b}_{i-1,j+1}+\mathbf{b}_{i+1,j+1}) \\
-   &+\frac{1}{2}(\mathbf{b}_{i,j-1}+\mathbf{b}_{i-1,j}+\mathbf{b}_{i+1,j}+\mathbf{b}_{i,j+1}).\\
-\end{align*}
-To lahko zapišemo s pomočjo t.i. maske kot:
-\begin{align*}
-                                        & &-1  & &2 & &-1 \\
-   &\mathbf{b}_{i,j}=\frac{1}{4} \times & 2 & & \sbullet & & 2 .\\
-                                        & &-1 & &2 & &-1 \\ 
-\end{align*}
-Mreža je sestavljena iz $(m+1)\times(n+1)$ kontrolnih točk, od teh ne poznamo 
-$(m-1)\times(n-1)$ izmed njih. 
-Za vsako izmed $(m-1)\times(n-1)$ imamo natanko eno enačbo, ki je določena z zgoraj opisano masko.
-To je seveda zelo časovno zahtevna metoda, da izračunamo kontrolne točke Coonsove ploskve,
-ampak nam da nov vpogled, kako bi lahko izračunali kontrolne točke Coonsove ploskve.
-Vidimo, da so kontrolne točke Coonsove ploskve poseben primer maske oblike:
-\begin{align*}
-   & &\alpha  & &\beta & &\alpha \\
-&\mathbf{b}_{i,j}= & \beta & & \sbullet & & \alpha,\\
-   & &\alpha & &\beta & &\alpha \\ 
-\end{align*}
-kjer je $(\alpha, \beta) = (-0.25, 0.5)$. To nam, da idejo da bi lahko izbrali različne 
-parametra $\alpha$ in $\beta$ sprmenili. Vedno bomo privzeli, da velja $4\alpha + 4\beta = 1$, saj 
+Oglejmo si $3 \times 3$ masko s splošnimi parametri, kjer se elemt izraža na sledeč način
+$$
+\mathbf{b}_{i,j} =  \quad 
+\begin{matrix*}[r]
+\alpha && \beta && \alpha \\
+\beta && \sbullet && \beta \\
+\alpha && \beta && \alpha
+\end{matrix*}
+$$
+V primeru da sta $(\alpha, \beta) = (-0.25, 0.5)$ dobimo splošno Consovo
+ploskvo. Vedno bomo privzeli, da velja $4\alpha + 4\beta = 1$, saj 
 tako ohranjamo afinost maske. S perturbiranjem parametrov 
-$\alpha$ in $\beta$ dobimo torej nov razred kontrolnih shem. 
-Imenujemo jih stalne kontrolne točke. V članku  so raziskovali
+$\alpha$ in $\beta$ dobimo torej nov razred kontrolnih shem, imenujemo jih stalne 
+krivulje (ang. permanence patches). V članku \cite{DCP}  so raziskovali
 vpliv $\alpha$ na optimalno oblike ploskve. Ugotovili so, da za izbrana $m$ in $n$
 ni vedno ene optimalne vrednosti za $\alpha$, ki bo dala dobro obliko ploskve.
-Namreč optimalna vrednost $\alpha$ je odvisna od oblike robnih krivulj.
+
+\subsection{Stalne ploskve}
+
+
+Ena kontrolna točka navadne Consove ploskve je odvisna od osem obrobnih točk, 
+torej gre za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah 
+($\alpha \neq  -0.25$), je točka odvisna od vseh mejnih točk, zato govorimo 
+o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarjanju 
+"boljših" krivulj.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
 
 \newpage
 
 \begin{thebibliography}{99}
-   \bibitem{c1}
+   \bibitem{DCP}
    G.~Farin, F.~Hansford, \emph{Discrete Coons patches}, 
    % popravi Morgan \& Claypool Publishers, 2018.
 \end{thebibliography}
