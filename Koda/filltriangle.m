@@ -30,7 +30,18 @@ for i = 1:n
     end
 end
 
-BT = BB\vt;
+BV = BB\vt;
+
+BT = NaN(n,n);
+s=m;
+for i = 1:n
+    for j = n-i+1:-1:1
+        BT(i,j) = BV(s);
+        s = s-1;
+    end
+end
+
+
 
 
 end
