@@ -219,7 +219,7 @@ krivulje (ang. permanence patches). V članku \cite{DCP}  so raziskovali
 vpliv $\alpha$ na optimalno oblike ploskve. Ugotovili so, da za izbrana $m$ in $n$
 ni vedno ene optimalne vrednosti za $\alpha$, ki bo dala dobro obliko ploskve.
 
-\subsection{Stalne ploskve}
+\section{Stalne Coonsove ploskve}
 
 
 Ena kontrolna točka navadne Consove ploskve je odvisna od osem obrobnih točk, 
@@ -228,7 +228,33 @@ torej gre za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah
 o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarjanju 
 "boljših" krivulj.
 
+Če si ogledamo primer, ko izberemo $\alpha = -0.257$ in rešimo linearni sistem, dobimo "boljšo"
+ploskev glede na dane robne rivulje. 
+TU BO SLIKA
+%\includegraphics*[keyvals]{imagefile}
+Dani poligoni izhajajo iz torusnih oblik in z modifikacijo $\alpha$ lahko pridemo do željene oblike.
+Kot zanimivost se izkaže da ob izbiri paramatra $\alpha = 0$ in seveda ob upoštevanju afinosti,
+dobimo ploskev, katere površina je minimizeranan za dano ogrodje krivulj. To se vidi iz Laplasove parcialne 
+diferencialne enačbe
+$$\mathbf{x}_{uu} + \mathbf{x}_{vv} = 0.$$
 
+
+\section{Trikotne stalne Coonsove ploskve}
+
+Mreža trikotne Bezirjeve krivulje je delno linearna površina, zato se v tem primeru porodi vprašanje,
+če imam tri robne poligone, ali obstaja "dobra" kontolna mreža ki zapolni omejeno območje. Ideja rešitve je
+podobna kot v prejšnem primeru, kjer uporabimo spremenjeno masko oblike:
+
+$$
+\mathbf{x} =  \quad 
+\begin{matrix*}[r]
+          &       &       & \alpha   &       &       & \\
+          &       & \beta &          & \beta &       & \\
+          & \beta &       & \sbullet &       & \beta & \\
+   \alpha &       & \beta &          & \beta &       & \alpha
+\end{matrix*}
+$$
+kjer je zaradi pogoja afinoste ponovno predpostavljeno da $3\alpha + 6\beta = 1$.
 
 
 
