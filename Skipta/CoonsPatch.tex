@@ -20,7 +20,6 @@
 \newtheorem{primer}[definicija]{Primer}
 \newtheorem{opomba}[definicija]{Opomba}
 
-
 \title{Diskretne Coonsove ploskve}
 \author{Matej Rojec, Vito Rozman}
 \date{\today}
@@ -37,27 +36,31 @@
 
 \section{Uvod}
 
-V seminarski nalogi bomo obravnavali površine, ki interpolirajo dane mejne krivulje. 
-Te površine imenujemo diskretne Consove ploskve, ki jih dobimo z reševanjem linearnega sistema.
+V seminarski nalogi bomo obravnavali ploskve, ki interpolirajo štiri mejne krivulje,
+ki so definirane vsaka na svoji stranici pravokotnika $[0,1]^2$. 
+Te ploskve bomo imenovali diskretne Consove ploskve, 
+ki jih bomo dobili z reševanjem linearnega sistema enačb.
+Pogledali si bomo tudi problem, ko imamo namesto pravokotnika podan 
+trikotnik, ki ga interpolirajo tri merjne krivulje.
 
 
 Eden od najstarejših problemov v Računalniško podprtem geometrijskem oblikovanju je problem, 
 kjer imamo podane štiri robne krivulje, radi pa bi poiskali ploskev z danimi robnimi krivuljami. 
-Torej podane imamo robne krivulje $$x(u,0), x(u,1), x(0,v),  x(1,u)$$, kjer lahko brez škode za 
-splošnost predpostavimo da je domena ploskve $x(u,v)$ enotni kvadrat $0 <= u,v <=1$. Znana rešitev 
-tega problema je bilinearna mešana Coonsova ploskev, ki je interpolirana z robnimi 
+Torej podane imamo robne krivulje $$x(u,0), x(u,1), x(0,v),  x(1,u),$$ kjer lahko brez škode za 
+splošnost predpostavimo da je domena ploskve $x(u,v)$ enotni kvadrat, torej $(u,v) \in [0,1]^2$. 
+Znana rešitev tega problema je bilinearna mešana Coonsova ploskev, ki je interpolirana z robnimi 
 krivuljami, kot: 
 \begin{align*}
    \label{continiusCons}
-   \mathbf{x}(u,v) =& (1-u)\mathbf{x}(0,v) +u\mathbf{x}(1,v)\\
-    & + (1-v)\mathbf{x}(u,0) +v\mathbf{x}(u,v) \\
+   \mathbf{x}(u,v) =& (1-u)x(0,v) +ux(1,v)\\
+    & + (1-v)x(u,0) +vx(u,v) \\
    & - 
    \begin{bmatrix} 
       1-u & u 
    \end{bmatrix}
    \begin{bmatrix} 
-      \mathbf{x}(0,0)& \mathbf{x}(0,1)\\
-      \mathbf{x}(1,0)&\mathbf{x}(1,1) 
+      x(0,0)& x(0,1)\\
+      x(1,0)& x(1,1) 
    \end{bmatrix}
    \begin{bmatrix}
       1-v\\
@@ -67,15 +70,17 @@ krivuljami, kot:
 
 
 \section{Diskretne Coonsove ploskve}
-V bolj modernih uporabah CAD, so mejne krivulje Bezierjeve polinomske krivulje, 
-ki jih napenjajo kontrolni poligoni. 
+V bolj modernih uporabah RPGO, so mejne krivulje Bézierjeve polinomske krivulje, 
+ki jih napenjajo kontrolne točke. 
 \begin{definicija}
-    Naj bodo dane točke $\mathbf{b}_0, \mathbf{b}_1, \dots, \mathbf{b}_n$. Potem je Bezierjeva 
-    krivulja podana s polinomsko paramerizacijo $\mathbf{p}: [0,1] -> \R^d$ s predpisom 
+    Naj bodo dane kontrolne točke $\mathbf{b}_0, \mathbf{b}_1, \dots, \mathbf{b}_n \in \R^d$. 
+    Potem je Bézierjeva krivulja stopnje $n$ podana s polinomsko paramerizacijo $\mathbf{p}: [0,1] \rightarrow \R^d$ s predpisom 
     $$\mathbf{p}(t) = \sum_{i=0}^n \mathbf{b}_{i} B_i^n(t),$$
-    kjer je $B_i^n(t) = \binom{n}{i} t^i (1-t)^{n-i}$, za $i = 0, 1,\dots,n$. Točkam $\mathbf{b}_i$
-    pravimo kontolne točke.
+    kjer je $B_i^n(t) = \binom{n}{i} t^i (1-t)^{n-i}$, za $i = 0, 1,\dots,n$. 
+   % Točkam $\mathbf{b}_i$ pravimo kontolne točke.
 \end{definicija}
+
+
 
 \begin{definicija}
     Bézierjevo ploskev $\mathbf{p} : [0,1]^2 \rightarrow \R^3$ iz tenzorskega produkta stopnje 
@@ -86,8 +91,8 @@ ki jih napenjajo kontrolni poligoni.
 \end{definicija}
 
 
-V tem primeru imamo podane kontrolne točke $b_{i,j}$ opremljene z 
-parametroma $(u,v)$ predstavljen s shemo: 
+Predpostavimo, da imamo podane robne kontrolne točke $\mathbf{b}_{i,j}$ 
+izračunane pri prametru $(u,v)$, ki predstavljajo sledečo shemo: 
 $$
 \begin{matrix}
    \mathbf{b}_{0,0}  &\mathbf{b}_{1,0} & \ldots &\mathbf{b}_{m-1,0} &\mathbf{b}_{m,0} \\
@@ -108,11 +113,12 @@ Bezierjevimi krivuljami:
     &\mathbf{p}(0,v) =\sum_{j=0}^n \mathbf{b}_{0,j} B_j^n(v), \qquad
     \mathbf{p}(1,v) =\sum_{j=0}^n \mathbf{b}_{m,j} B_j^n(v),  \\
  \end{align*}
-Tako se notranje toče izražajo z formulo: 
+Notranje točke kontrolnega polinoma, 
+lahko sedaj izračunamo kot: 
 \begin{align*}
-   \mathbf{b}_{i,j} =& (1 - \frac{i}{m})\mathbf{b}_{0,j} +\frac{i}{m}\mathbf{b}_{m,j}\\
-    & + (1 - \frac{j}{n})\mathbf{b}_{i,0} +\frac{j}{n}\mathbf{b}_{i,n}\ \\
-   & - 
+   \mathbf{b}_{i,j} &= \left(1 - \frac{i}{m}\right)\mathbf{b}_{0,j} +\frac{i}{m}\mathbf{b}_{m,j}\\
+    &+ \left(1 - \frac{j}{n}\right)\mathbf{b}_{i,0} +\frac{j}{n}\mathbf{b}_{i,n}\ \\
+   &- 
    \begin{bmatrix} 
       1 - \frac{i}{m} & \frac{i}{m}
    \end{bmatrix}
@@ -128,6 +134,13 @@ Tako se notranje toče izražajo z formulo:
 za $i = 1,2,\dots,m-1$ in $j = 1,2,\dots,n-1$. Izkaže se, da je kontrolni poligon ploskev, 
 ki jo omejujejo robne krivulje,   enak kontrolnemu poligonu, ki ga dobimo z opisano metodo. 
 »Morda zanimivo: za določene oblike rabimo definirati samo robne krivulje«.
+
+Ploskev, ki jo dobimo s tako dobljenimi kontrolnimi točkami $\mathbf{b}_{i,j}$
+imenujemo Coonsova ploskev.
+
+Primer take ploskve je slika \ref{fig:whatever}, kjer je prikazan 
+rob kontrolnega poligona, notranje točke kontrolnega poligona in 
+Bézierjeva ploskev definirana nad kontrolnim poligonom
 
 \begin{figure}[ht!]
    \centering
@@ -151,7 +164,7 @@ ki jo omejujejo robne krivulje,   enak kontrolnemu poligonu, ki ga dobimo z opis
 
 
 
-\section{Lastnosti Coonsovih ploskev}
+\section{Ohranjanje Coonsove ploskve}
 
 %\subsection{Minimziraje zasuka}
 %Coonsova ploskve minimzirajo zasuk, definiran kot:
@@ -167,11 +180,9 @@ ki jo omejujejo robne krivulje,   enak kontrolnemu poligonu, ki ga dobimo z opis
 %    \frac{\partial^4}{\partial u^2 \partial v^2}\mathbf{p}(u,v) = 0.
 %\end{equation}
 
-\subsection{Ohranjanje Coonsove ploskve}
-
-Naj bo Cooncova ploskev definirana nad domeno $D = [0,1]^2$. Lahko izberemo dve 
-točki $(u_0,v_0)$ in $(u_1,v_1)$ ki razpenjata pravokotnik $R$ v domeni $D$. 
-Štiri mejne krivulje pod-Consove ploskve definiranega na $R$ se preslikajo 
+Denimo, da imamo podano Cooncova ploskev definirana nad domeno $D = [0,1]^2$. 
+Izberemo dve točki $(u_0,v_0)$ in $(u_1,v_1)$ ki razpenjata pravokotnik $R$ v domeni $D$. 
+Štiri mejne krivulje pod-Consove ploskve definirae na $R$ se preslikajo 
 v štiri krivulje na prvotno Consovo ploskev. Izkaže se da pod-Coonsova ploskev 
 definirana na $R$ je prvotna Coonsova ploskev zožana na območje $R$. To načelo 
 lahko uporabimo na diskretni $3 \times 3$ Consovi ploskivi
@@ -200,24 +211,26 @@ $$
 $$
 Ker je mreža sestavljena iz $(m+1)\times(n+1)$ kontrolnih točk, dane pa imamo samo robne
 točke lahko ostalih $(m-1)\times(n-1)$ enlično določimo z zgornjo masko. Določitev točk se prvede
-na sistem $(m+1)\times(n+1)$ linearnih enačb.
+na reševanje sistema $(m+1)\times(n+1)$ linearnih enačb.
 
-Oglejmo si $3 \times 3$ masko s splošnimi parametri, kjer se elemt izraža na sledeč način
+Oglejmo si $3 \times 3$ masko s splošnimi parametri, kjer se element izraža na sledeč način:
 $$
 \mathbf{b}_{i,j} =  \quad 
 \begin{matrix*}[r]
 \alpha && \beta && \alpha \\
-\beta && \sbullet && \beta \\
+\beta && \sbullet && \beta. \\
 \alpha && \beta && \alpha
 \end{matrix*}
 $$
-V primeru da sta $(\alpha, \beta) = (-0.25, 0.5)$ dobimo splošno Consovo
-ploskvo. Vedno bomo privzeli, da velja $4\alpha + 4\beta = 1$, saj 
+V primeru da sta $(\alpha, \beta) = (-0.25, 0.5)$ dobimo Consovo
+ploskvo. Privzeli bomo, da velja $4\alpha + 4\beta = 1$, saj 
 tako ohranjamo afinost maske. S perturbiranjem parametrov 
 $\alpha$ in $\beta$ dobimo torej nov razred kontrolnih shem, imenujemo jih stalne 
-krivulje (ang. permanence patches). V članku \cite{DCP}  so raziskovali
+krivulje (angl. \textit{permanence patches}). V članku \cite{DCP}  so raziskovali
 vpliv $\alpha$ na optimalno oblike ploskve. Ugotovili so, da za izbrana $m$ in $n$
 ni vedno ene optimalne vrednosti za $\alpha$, ki bo dala dobro obliko ploskve.
+
+Oglejmo si še nekaj primerov ploskev pri različnih parametrih $\alpha$ in $\beta$.
 
 \section{Stalne Coonsove ploskve}
 
