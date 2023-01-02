@@ -38,7 +38,7 @@
 
 V seminarski nalogi bomo obravnavali ploskve, ki interpolirajo štiri mejne krivulje,
 ki so definirane vsaka na svoji stranici pravokotnika $[0,1]^2$. 
-Te ploskve bomo imenovali diskretne Consove ploskve, 
+Te ploskve bomo imenovali diskretne Coonsove ploskve, 
 ki jih bomo dobili z reševanjem linearnega sistema enačb.
 Pogledali si bomo tudi problem, ko imamo namesto pravokotnika podan 
 trikotnik, ki ga interpolirajo tri merjne krivulje.
@@ -182,10 +182,10 @@ Bézierjeva ploskev definirana nad kontrolnim poligonom
 
 Denimo, da imamo podano Cooncova ploskev definirana nad domeno $D = [0,1]^2$. 
 Izberemo dve točki $(u_0,v_0)$ in $(u_1,v_1)$ ki razpenjata pravokotnik $R$ v domeni $D$. 
-Štiri mejne krivulje pod-Consove ploskve definirae na $R$ se preslikajo 
-v štiri krivulje na prvotno Consovo ploskev. Izkaže se da pod-Coonsova ploskev 
+Štiri mejne krivulje pod-Coonsove ploskve definirae na $R$ se preslikajo 
+v štiri krivulje na prvotno Coonsovo ploskev. Izkaže se da pod-Coonsova ploskev 
 definirana na $R$ je prvotna Coonsova ploskev zožana na območje $R$. To načelo 
-lahko uporabimo na diskretni $3 \times 3$ Consovi ploskivi
+lahko uporabimo na diskretni $3 \times 3$ Coonsovi ploskivi
 $$
 \begin{matrix} 
    \mathbf{b}_{i-1,j-1} & \mathbf{b}_{i-1,j} & \mathbf{b}_{i-1,j+1}\\
@@ -222,7 +222,7 @@ $$
 \alpha && \beta && \alpha
 \end{matrix*}
 $$
-V primeru da sta $(\alpha, \beta) = (-0.25, 0.5)$ dobimo Consovo
+V primeru da sta $(\alpha, \beta) = (-0.25, 0.5)$ dobimo Coonsovo
 ploskvo. Privzeli bomo, da velja $4\alpha + 4\beta = 1$, saj 
 tako ohranjamo afinost maske. S perturbiranjem parametrov 
 $\alpha$ in $\beta$ dobimo torej nov razred kontrolnih shem, imenujemo jih stalne 
@@ -230,39 +230,38 @@ krivulje (angl. \textit{permanence patches}). V članku \cite{DCP}  so raziskova
 vpliv $\alpha$ na optimalno oblike ploskve. Ugotovili so, da za izbrana $m$ in $n$
 ni vedno ene optimalne vrednosti za $\alpha$, ki bo dala dobro obliko ploskve.
 
+\section{Stalne Coonsove ploskve}
+
+
+Ena kontrolna točka navadne Coonsove ploskve je odvisna od osem obrobnih točk, 
+torej gre za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah 
+($\alpha \neq  -0.25$), je točka odvisna od vseh mejnih točk, zato govorimo 
+o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarjanju 
+``boljše'' krivulje.
+
 Oglejmo si še nekaj primerov ploskev pri različnih parametrih $\alpha$ in $\beta$.
 V primeru, da v sliki \ref{fig:whatever} pustimo ogrodje kontrolnih točk enako,
 namesto parametra $\alpha =- 0.25$ pa uporabimo 
 parametra $\alpha = -0.26$ ter $\alpha = -0.23$ in rešimo sistem
 linearnih enačb dobimo krivulje prikazane na sliki \ref{fig:coons_pospl}.
 
-
 \begin{figure}[ht!]
    \centering
-   \subfigure[Krivulja dobljena s parametrom $\alpha = -0.26$]{
+   \subfigure[Stalna krivulja pridobljena s parametrom $\alpha = -0.26$]{
    \includegraphics[width=0.45\textwidth]{square_26.png}
    }
-   \subfigure[Krivulja dobljena s parametrom $\alpha = -0.26$]{
+   \subfigure[Stalna krivulja pridobljena s parametrom $\alpha = -0.26$]{
    \includegraphics[width=0.45\textwidth]{square_23.png}
    }
-   \caption{Krivulje pridobljene z reševanjem sistemov linearnih enačb}
+   \caption{Stalni krivulji pridobljeni z reševanjem sistemov linearnih enačb}
 \label{fig:coons_pospl}
 \end{figure}
 
 
-\section{Stalne Coonsove ploskve}
 
 
-Ena kontrolna točka navadne Consove ploskve je odvisna od osem obrobnih točk, 
-torej gre za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah 
-($\alpha \neq  -0.25$), je točka odvisna od vseh mejnih točk, zato govorimo 
-o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarjanju 
-"boljših" krivulj.
 
-Če si ogledamo primer, ko izberemo $\alpha = -0.257$ in rešimo linearni sistem, dobimo "boljšo"
-ploskev glede na dane robne rivulje. 
-TU BO SLIKA
-%\includegraphics*[keyvals]{imagefile}
+
 Dani poligoni izhajajo iz torusnih oblik in z modifikacijo $\alpha$ lahko pridemo do željene oblike.
 Kot zanimivost se izkaže da ob izbiri paramatra $\alpha = 0$ in seveda ob upoštevanju afinosti,
 dobimo ploskev, katere površina je minimizeranan za dano ogrodje krivulj. To se vidi iz Laplasove parcialne 
