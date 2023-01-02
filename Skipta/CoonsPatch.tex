@@ -181,7 +181,7 @@ Bézierjeva ploskev definirana nad kontrolnim poligonom
 %    \frac{\partial^4}{\partial u^2 \partial v^2}\mathbf{p}(u,v) = 0.
 %\end{equation}
 
-Denimo, da imamo podano Cooncova ploskev definirana nad domeno $D = [0,1]^2$. 
+Denimo, da imamo podano Coonsova ploskev definirana nad domeno $D = [0,1]^2$. 
 Izberemo dve točki $(u_0,v_0)$ in $(u_1,v_1)$ ki razpenjata pravokotnik $R$ v domeni $D$. 
 Štiri mejne krivulje pod-Coonsove ploskve definirae na $R$ se preslikajo 
 v štiri krivulje na prvotno Coonsovo ploskev. Izkaže se da pod-Coonsova ploskev 
@@ -242,7 +242,7 @@ o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarja
 % @Vito narekovaje se vidno v LaTeX-u piše kot sem zgoraj nakazal
 
 Oglejmo si še nekaj primerov ploskev pri različnih parametrih $\alpha$ in $\beta$.
-V primeru, da v sliki \ref{fig:whatever} pustimo ogrodje kontrolnih točk enako,
+V primeru, da v sliki \ref{fig:whatever} pustimo okvir kontrolnih točk enako,
 namesto parametra $\alpha =- 0.25$ pa uporabimo 
 parametra $\alpha = -0.26$ ter $\alpha = -0.23$ in rešimo sistem
 linearnih enačb dobimo krivulje prikazane na sliki \ref{fig:coons_pospl}.
@@ -266,7 +266,7 @@ linearnih enačb dobimo krivulje prikazane na sliki \ref{fig:coons_pospl}.
 
 Dani poligoni izhajajo iz torusnih oblik in z modifikacijo $\alpha$ lahko pridemo do željene oblike.
 Kot zanimivost se izkaže da pri izbiri paramatra $\alpha = 0$ in seveda ob upoštevanju afinosti,
-dobimo ploskev, katere površina je minimizeranan za dano ogrodje krivulj. To se vidi iz Laplasove parcialne 
+dobimo ploskev, katere površina je minimizeranan za dan okvir krivulj. To se vidi iz Laplasove parcialne 
 diferencialne enačbe
 % @Vito polinomske ploskve se piše s p
 $$\mathbf{p}_{uu} + \mathbf{p}_{vv} = 0.$$
@@ -295,8 +295,8 @@ $$
 kjer je zaradi pogoja afinoste ponovno zahtevamo,da je $3\alpha + 6\beta = 1$.
 % @Vito a je kle n nad 2 ?
 % n+2 nad 2 je sam je n tece od 0 naprej  
-Podbono kot prej rešimo $\binom{n+1}{2}$, kjer je $n$ število kontrolnih točk 
-na eni stranici trikotnika.
+Podbono kot prej rešimo sistem z $\binom{m+1}{2}$ linearnih enačb, 
+kjer je $m$ število kontrolnih točk na eni stranici trikotnika.
 
 Na sliki \ref{fig:trikotne} vidimo tri možne oblike stalne trikotne
 krpe s parametri $0,-1/9$ ter $-1/6$.
@@ -320,35 +320,23 @@ krpe s parametri $0,-1/9$ ter $-1/6$.
 \end{figure}
 
 Ponovno dobimo pri paramatru $\alpha = 0$ ploskev, 
-katere površina je minimizeranan za dano ogrodje krivulj, kar se ponovno vidi iz 
+katere površina je minimizeranan za dan okvir krivulj, kar se ponovno vidi iz 
 Laplasove parcialne diferencialne enačbe.
 
 \section{Zaključek}
 
-Preoblikovali smo diskretne Consove ploskve in jih posplošili na stalne
+Preoblikovali smo diskretne Coonsove ploskve in jih posplošili na stalne
 ploskve, tako za pravokotne primere kot za trikotne primere. Poslošitev nam omogoča
-izdelavo oblik, ki so bolj zaželjene od standardnih Consovih oblik. Ogledali smo 
-si vpliv parametrov stalnih Consovih ploskev in jih grafično prikazali.
-
-
-
-
-
-
-
-
-
-
+izdelavo oblik, ki so bolj zaželjene od standardnih Coonsovih oblik. Ogledali smo 
+si vpliv parametrov stalnih Coonsovih ploskev in jih grafično prikazali.
 
 
 \newpage
 
 
-\newpage
 
 \begin{thebibliography}{99}
    \bibitem{DCP}
    G.~Farin, F.~Hansford, \emph{Discrete Coons patches}, 
-   % popravi Morgan \& Claypool Publishers, 2018.
 \end{thebibliography}
 \end{document}
