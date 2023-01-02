@@ -81,6 +81,7 @@ ki jih napenjajo kontrolne točke.
 \end{definicija}
 
 % kle manjka nek vezni tekst med definicijama
+Podobno lahko definiramo Bézierjeve ploskve na sledeč način.
 
 \begin{definicija}
     Bézierjevo ploskev $\mathbf{p} : [0,1]^2 \rightarrow \R^3$ iz tenzorskega produkta stopnje 
@@ -113,8 +114,7 @@ Bezierjevimi krivuljami:
     &\mathbf{p}(0,v) =\sum_{j=0}^n \mathbf{b}_{0,j} B_j^n(v), \qquad
     \mathbf{p}(1,v) =\sum_{j=0}^n \mathbf{b}_{m,j} B_j^n(v),  \\
  \end{align*}
-Notranje točke kontrolnega polinoma, 
-lahko sedaj izračunamo kot: 
+Notranje točke kontrolnega polinoma, lahko izračunamo na podoben način kot zgoraj: 
 \begin{align*}
    \mathbf{b}_{i,j} &= \left(1 - \frac{i}{m}\right)\mathbf{b}_{0,j} +\frac{i}{m}\mathbf{b}_{m,j}\\
     &+ \left(1 - \frac{j}{n}\right)\mathbf{b}_{i,0} +\frac{j}{n}\mathbf{b}_{i,n}\ \\
@@ -132,7 +132,7 @@ lahko sedaj izračunamo kot:
    \end{bmatrix}
 \end{align*}
 za $i = 1,2,\dots,m-1$ in $j = 1,2,\dots,n-1$. Izkaže se, da je kontrolni poligon ploskev, 
-ki jo omejujejo robne krivulje,   enak kontrolnemu poligonu, ki ga dobimo z opisano metodo. 
+ki jo omejujejo robne krivulje, enak kontrolnemu poligonu, ki ga dobimo z opisano metodo. 
 »Morda zanimivo: za določene oblike rabimo definirati samo robne krivulje«.
 
 Ploskev, ki jo dobimo s tako dobljenimi kontrolnimi točkami $\mathbf{b}_{i,j}$
