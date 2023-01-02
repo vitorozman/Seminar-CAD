@@ -40,13 +40,6 @@ bezier3(BX,BY,BZ,U);
 figure(1)
 plotbezier3(BX,BY,BZ,50)
 
-
-
-
-
-
-
-
 Bx = [
     4 NaN NaN NaN;
     5 2 NaN NaN; 

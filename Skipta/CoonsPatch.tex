@@ -80,7 +80,7 @@ ki jih napenjajo kontrolne točke.
    % Točkam $\mathbf{b}_i$ pravimo kontolne točke.
 \end{definicija}
 
-
+% kle manjka nek vezni tekst med definicijama
 
 \begin{definicija}
     Bézierjevo ploskev $\mathbf{p} : [0,1]^2 \rightarrow \R^3$ iz tenzorskega produkta stopnje 
@@ -164,7 +164,8 @@ Bézierjeva ploskev definirana nad kontrolnim poligonom
 
 
 
-\section{Ohranjanje Coonsove ploskve}
+\section{Stalnost Coonsove ploskve}
+\label{ch:3}
 
 %\subsection{Minimziraje zasuka}
 %Coonsova ploskve minimzirajo zasuk, definiran kot:
@@ -231,14 +232,14 @@ vpliv $\alpha$ na optimalno oblike ploskve. Ugotovili so, da za izbrana $m$ in $
 ni vedno ene optimalne vrednosti za $\alpha$, ki bo dala dobro obliko ploskve.
 
 \section{Stalne Coonsove ploskve}
-
+\label{ch:4}
 
 Ena kontrolna točka navadne Coonsove ploskve je odvisna od osem obrobnih točk, 
 torej gre za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah 
 ($\alpha \neq  -0.25$), je točka odvisna od vseh mejnih točk, zato govorimo 
 o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarjanju 
 ``boljše'' krivulje.
-% Vito narekovaje se vidno v LaTeX-u piše kot sem zgoraj nakazal
+% @Vito narekovaje se vidno v LaTeX-u piše kot sem zgoraj nakazal
 
 Oglejmo si še nekaj primerov ploskev pri različnih parametrih $\alpha$ in $\beta$.
 V primeru, da v sliki \ref{fig:whatever} pustimo ogrodje kontrolnih točk enako,
@@ -264,17 +265,23 @@ linearnih enačb dobimo krivulje prikazane na sliki \ref{fig:coons_pospl}.
 
 
 Dani poligoni izhajajo iz torusnih oblik in z modifikacijo $\alpha$ lahko pridemo do željene oblike.
-Kot zanimivost se izkaže da ob izbiri paramatra $\alpha = 0$ in seveda ob upoštevanju afinosti,
+Kot zanimivost se izkaže da pri izbiri paramatra $\alpha = 0$ in seveda ob upoštevanju afinosti,
 dobimo ploskev, katere površina je minimizeranan za dano ogrodje krivulj. To se vidi iz Laplasove parcialne 
 diferencialne enačbe
-$$\mathbf{x}_{uu} + \mathbf{x}_{vv} = 0.$$
+% @Vito polinomske ploskve se piše s p
+$$\mathbf{p}_{uu} + \mathbf{p}_{vv} = 0.$$
 
 
 \section{Trikotne stalne Coonsove ploskve}
 
-Mreža trikotne Bezirjeve krivulje je delno linearna površina, zato se v tem primeru porodi vprašanje,
-če imam tri robne poligone, ali obstaja "dobra" kontolna mreža ki zapolni omejeno območje. Ideja rešitve je
-podobna kot v prejšnem primeru, kjer uporabimo spremenjeno masko oblike:
+%@Vito piecewise = odsekoma 
+Oglejmo si primer, ko imamo krivulje definirane nad trikotnikom 
+namesto nad pravokotnikom kot v razdelkih \ref{ch:3} in \ref{ch:4}.
+Pojavi se naslednje vprašanje, če imamo podane tri robne kontrolne poligone 
+ki razpenjajo zunanjost trikotnika, ali obstaja  ``dobra''
+kontolna mreža, ki zapolni omejeno območje. 
+Podobno kot v razdelkih \ref{ch:3} in \ref{ch:4} lahko uporabimo načelo 
+stalnosti za masko:
 
 $$
 \mathbf{x} =  \quad 
@@ -285,14 +292,15 @@ $$
    \alpha &       & \beta &          & \beta &       & \alpha
 \end{matrix*}
 $$
-kjer je zaradi pogoja afinoste ponovno predpostavljeno da $3\alpha + 6\beta = 1$.
+kjer je zaradi pogoja afinoste ponovno zahtevamo,da je $3\alpha + 6\beta = 1$.
+% @Vito a je kle n nad 2 ? 
+Podbono kot prej rešimo $\binom{n+1}{2}$, kjer je $n$ število kontrolnih točk 
+na eni stranici trikotnika.
 
 
 
 
-
-
-
+\section{Zaključek}
 
 
 
