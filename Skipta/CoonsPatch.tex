@@ -43,7 +43,6 @@ ki jih bomo dobili z reševanjem linearnega sistema enačb.
 Pogledali si bomo tudi problem, ko imamo namesto pravokotnika podan 
 trikotnik, ki ga interpolirajo tri merjne krivulje.
 
-
 Eden od najstarejših problemov v Računalniško podprtem geometrijskem oblikovanju je problem, 
 kjer imamo podane štiri robne krivulje, radi pa bi poiskali ploskev z danimi robnimi krivuljami. 
 Torej podane imamo robne krivulje $$x(u,0), x(u,1), x(0,v),  x(1,u),$$ kjer lahko brez škode za 
@@ -52,15 +51,15 @@ Znana rešitev tega problema je bilinearna mešana Coonsova ploskev, ki je inter
 krivuljami, kot: 
 \begin{align*}
    \label{continiusCons}
-   \mathbf{x}(u,v) =& (1-u)x(0,v) +ux(1,v)\\
-    & + (1-v)x(u,0) +vx(u,v) \\
+   \mathbf{x}(u,v) =& (1-u)\mathbf{x}(0,v) +u\mathbf{x}(1,v)\\
+    & + (1-v)\mathbf{x}(u,0) +v\mathbf{x}(u,v) \\
    & - 
    \begin{bmatrix} 
       1-u & u 
    \end{bmatrix}
    \begin{bmatrix} 
-      x(0,0)& x(0,1)\\
-      x(1,0)& x(1,1) 
+      \mathbf{x}(0,0)& \mathbf{x}(0,1)\\
+      \mathbf{x}(1,0)& \mathbf{x}(1,1) 
    \end{bmatrix}
    \begin{bmatrix}
       1-v\\
@@ -77,10 +76,8 @@ ki jih napenjajo kontrolne točke.
     Potem je Bézierjeva krivulja stopnje $n$ podana s polinomsko paramerizacijo $\mathbf{p}: [0,1] \rightarrow \R^d$ s predpisom 
     $$\mathbf{p}(t) = \sum_{i=0}^n \mathbf{b}_{i} B_i^n(t),$$
     kjer je $B_i^n(t) = \binom{n}{i} t^i (1-t)^{n-i}$, za $i = 0, 1,\dots,n$. 
-   % Točkam $\mathbf{b}_i$ pravimo kontolne točke.
 \end{definicija}
 
-% kle manjka nek vezni tekst med definicijama
 Podobno lahko definiramo Bézierjeve ploskve na sledeč način.
 
 \begin{definicija}
@@ -239,7 +236,6 @@ torej gre za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah
 ($\alpha \neq  -0.25$), je točka odvisna od vseh mejnih točk, zato govorimo 
 o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarjanju 
 ``boljše'' krivulje.
-% @Vito narekovaje se vidno v LaTeX-u piše kot sem zgoraj nakazal
 
 Oglejmo si še nekaj primerov ploskev pri različnih parametrih $\alpha$ in $\beta$.
 V primeru, da v sliki \ref{fig:whatever} pustimo okvir kontrolnih točk enako,
@@ -259,22 +255,14 @@ linearnih enačb dobimo krivulje prikazane na sliki \ref{fig:coons_pospl}.
 \label{fig:coons_pospl}
 \end{figure}
 
-
-
-
-
-
 Dani poligoni izhajajo iz torusnih oblik in z modifikacijo $\alpha$ lahko pridemo do željene oblike.
 Kot zanimivost se izkaže da pri izbiri paramatra $\alpha = 0$ in seveda ob upoštevanju afinosti,
 dobimo ploskev, katere površina je minimizeranan za dan okvir krivulj. To se vidi iz Laplasove parcialne 
 diferencialne enačbe
-% @Vito polinomske ploskve se piše s p
 $$\mathbf{p}_{uu} + \mathbf{p}_{vv} = 0.$$
-
 
 \section{Trikotne stalne Coonsove ploskve}
 
-%@Vito piecewise = odsekoma 
 Oglejmo si primer, ko imamo krivulje definirane nad trikotnikom 
 namesto nad pravokotnikom kot v razdelkih \ref{ch:3} in \ref{ch:4}.
 Pojavi se naslednje vprašanje, če imamo podane tri robne kontrolne poligone 
@@ -284,25 +272,22 @@ Podobno kot v razdelkih \ref{ch:3} in \ref{ch:4} lahko uporabimo načelo
 stalnosti za masko:
 
 $$
-\mathbf{x} =  \quad 
+\mathbf{b}_{\mathbf{i}} =  \quad 
 \begin{matrix*}[r]
           &       &       & \alpha   &       &       & \\
           &       & \beta &          & \beta &       & \\
-          & \beta &       & \sbullet &       & \beta & \\
+          &         \beta &       & \sbullet &       & \beta & \\
    \alpha &       & \beta &          & \beta &       & \alpha
 \end{matrix*}
 $$
 kjer je zaradi pogoja afinoste ponovno zahtevamo,da je $3\alpha + 6\beta = 1$.
-% @Vito a je kle n nad 2 ?
-% n+2 nad 2 je sam je n tece od 0 naprej  
+
 Podbono kot prej rešimo sistem z $\binom{m+1}{2}$ linearnih enačb, 
 kjer je $m$ število kontrolnih točk na eni stranici trikotnika.
 
 Na sliki \ref{fig:trikotne} vidimo tri možne oblike stalne trikotne
 krpe s parametri $0,-1/9$ ter $-1/6$.
 
-% @Vito A dodavo še slika ogrodja kle al ne
-% lahko ja, ce se bo kj vidl
 \begin{figure}[ht!]
    \centering
    \subfigure[Primer stalne trikotne krpe dobljene s parametrom $\alpha = -1/6$]{
@@ -330,10 +315,7 @@ ploskve, tako za pravokotne primere kot za trikotne primere. Poslošitev nam omo
 izdelavo oblik, ki so bolj zaželjene od standardnih Coonsovih oblik. Ogledali smo 
 si vpliv parametrov stalnih Coonsovih ploskev in jih grafično prikazali.
 
-
 \newpage
-
-
 
 \begin{thebibliography}{99}
    \bibitem{DCP}
