@@ -109,7 +109,7 @@
 
 
 \begin{frame}
-\frametitle{Index}
+\frametitle{Povzetek}
    \tableofcontents
 \end{frame}
 
@@ -117,7 +117,6 @@
 % ===================================================================
 
 \section{Uvod}
-
 
 
 \begin{frame}
@@ -153,6 +152,11 @@ ki jih interpolira.
           
 \end{block}
     
+\begin{block}{}
+    $\mathbf{b}_{i,j}$ pripada domenskem parametru $\left( \frac{i}{m}, \frac{j}{n}  \right)$          
+\end{block}
+
+
 \end{frame}
 
 \section{Coonosove ploskve}
@@ -168,6 +172,7 @@ ki jih interpolira.
     \end{align*}    
     nad domeno $(u,v) \in [0,1]^2.$
 \end{block}
+
 
 
 \end{frame}
@@ -189,7 +194,6 @@ ki jih interpolira.
        \color{blue} \mathbf{b}_{0,n}  &\mathbf{b}_{1,n} & \ldots  & \color{red} \mathbf{b}_{i,n} & \ldots  &\mathbf{b}_{m-1,n} &\color{blue} \mathbf{b}_{m,n} 
     \end{matrix}
     $$
-    Točke $\mathbf{b}_{i,j}$ določimo kot ``uteženo povprečje robnih točk''.
 \end{block}
     
 \end{frame}
@@ -328,6 +332,14 @@ imenujemo Coonsova ploskev.
 	\end{columns}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Stalne ploskve -- primer}
+    Stalna krivulja pridobljena s parametrom $\alpha = 0$ 
+    \begin{figure}
+        \includegraphics[width=0.8\textwidth]{square_0.png}
+    \end{figure}
+\end{frame}
+
 
 \section{Trikotne stalne ploskve}
 
@@ -344,7 +356,8 @@ imenujemo Coonsova ploskev.
     \alpha &       & \beta &          & \beta &       & \alpha
     \end{matrix*}
     $$
-    Rešimo $\binom{m+1}{2}$, kjer je $m$ število kontrolnih točk 
+    Rešimo sistem $\binom{m+1}{2}$
+    linearnih enačb, kjer je $m$ število kontrolnih točk 
     na eni stranici trikotnika
 
     Afinost: $3\alpha + 6\beta = 1$
