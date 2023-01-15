@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{mathtools}
+\usepackage{xcolor}
 \pagenumbering{roman}
 
 \begin{document}
@@ -25,7 +26,6 @@
 \date{\today}
 
 \maketitle
-
 
 \newpage
 
@@ -48,24 +48,24 @@ kjer imamo podane štiri robne krivulje, radi pa bi poiskali ploskev z danimi ro
 Torej podane imamo robne krivulje $$x(u,0), x(u,1), x(0,v),  x(1,u),$$ kjer lahko brez škode za 
 splošnost predpostavimo da je domena ploskve $x(u,v)$ enotni kvadrat, torej $(u,v) \in [0,1]^2$. 
 Znana rešitev tega problema je bilinearna mešana Coonsova ploskev, ki je interpolirana z robnimi 
-krivuljami, kot: 
-\begin{align*}
+krivuljami, kot:
+\begin{align}
    \label{continiusCons}
-   \mathbf{x}(u,v) =& (1-u)\mathbf{x}(0,v) +u\mathbf{x}(1,v)\\
-    & + (1-v)\mathbf{x}(u,0) +v\mathbf{x}(u,v) \\
+   \mathbf{x}(u,v) =& (1-u)\mathbf{x}(0,v) +u\mathbf{x}(1,v) \notag \\
+    & + (1-v)\mathbf{x}(u,0) +v\mathbf{x}(u,v)   \\
    & - 
    \begin{bmatrix} 
       1-u & u 
    \end{bmatrix}
    \begin{bmatrix} 
-      \mathbf{x}(0,0)& \mathbf{x}(0,1)\\
+      \mathbf{x}(0,0)& \mathbf{x}(0,1) \notag \\
       \mathbf{x}(1,0)& \mathbf{x}(1,1) 
    \end{bmatrix}
    \begin{bmatrix}
       1-v\\
       v
-   \end{bmatrix}
-\end{align*}
+   \end{bmatrix}.
+\end{align}
 
 
 \section{Diskretne Coonsove ploskve}
@@ -90,45 +90,62 @@ Podobno lahko definiramo Bézierjeve ploskve na sledeč način.
 
 
 Predpostavimo, da imamo podane robne kontrolne točke $\mathbf{b}_{i,j}$ 
-izračunane pri prametru $(u,v)$, ki predstavljajo sledečo shemo: 
+izračunane pri prametru $(u,v)$. Konmtrolne točke
 $$
 \begin{matrix}
    \mathbf{b}_{0,0}  &\mathbf{b}_{1,0} & \ldots &\mathbf{b}_{m-1,0} &\mathbf{b}_{m,0} \\
    \mathbf{b}_{0,1}  &                 &        &                   &\mathbf{b}_{m,1} \\
    \vdots            &                 &        &                   &  \vdots\\
    \mathbf{b}_{0,n-1} &                &        &                    &\mathbf{b}_{m,n-1} \\ 
-   \mathbf{b}_{0,n}  &\mathbf{b}_{1,n} & \ldots &\mathbf{b}_{m-1,n} &\mathbf{b}_{m,n} 
+   \mathbf{b}_{0,n}  &\mathbf{b}_{1,n} & \ldots &\mathbf{b}_{m-1,n} &\mathbf{b}_{m,n}. 
 \end{matrix}
 $$
-
-   
-
-Sedaj lahko primer diskritiziramo in robne krivulje zapišemo s štirimi 
-Bezierjevimi krivuljami:
+določajo štiri robne krivulje,  ki so definirane s pomočjo Bézierjeve krivulj
 \begin{align*}
     &\mathbf{p}(u,0) =\sum_{i=0}^m \mathbf{b}_{i,0} B_i^m(u), \qquad
     \mathbf{p}(u,1) =\sum_{i=0}^m \mathbf{b}_{i,n} B_i^m(u),  \\
     &\mathbf{p}(0,v) =\sum_{j=0}^n \mathbf{b}_{0,j} B_j^n(v), \qquad
     \mathbf{p}(1,v) =\sum_{j=0}^n \mathbf{b}_{m,j} B_j^n(v),  \\
  \end{align*}
-Notranje točke kontrolnega polinoma, lahko izračunamo na podoben način kot zgoraj: 
-\begin{align*}
-   \mathbf{b}_{i,j} &= \left(1 - \frac{i}{m}\right)\mathbf{b}_{0,j} +\frac{i}{m}\mathbf{b}_{m,j}\\
-    &+ \left(1 - \frac{j}{n}\right)\mathbf{b}_{i,0} +\frac{j}{n}\mathbf{b}_{i,n}\ \\
+ki omejujejo Bézierjevo ploskev.
+Shema  
+ $$
+ \begin{matrix}
+     \color{blue} \mathbf{b}_{0,0}  &\mathbf{b}_{1,0} & \ldots & \color{red} \mathbf{b}_{i,0} & \ldots &\mathbf{b}_{m-1,0}  &\color{blue} \mathbf{b}_{m,0} \\
+    \mathbf{b}_{0,1}  &                 &        & &      &                   &\mathbf{b}_{m,1} \\
+    \vdots            &                 &        & &     &                   &  \vdots\\
+    \color{red} \mathbf{b}_{0,j}                 &                 &        & \mathbf{b}_{i,j} &  &   & \color{red} \mathbf{b}_{m,j} \\                  &  \\
+    \vdots            &                 &        & &    &                   & \vdots \\
+    \mathbf{b}_{0,n-1} &                &         & &     &                    &\mathbf{b}_{m,n-1} \\ 
+    \color{blue} \mathbf{b}_{0,n}  &\mathbf{b}_{1,n} & \ldots  & \color{red} \mathbf{b}_{i,n} & \ldots  &\mathbf{b}_{m-1,n} &\color{blue} \mathbf{b}_{m,n} 
+ \end{matrix}
+ $$
+nam prikazuje idejo, kako vsako točko $\mathbf{b}_{i,j}$ določimo s pomočjo 
+robnih točk $\color{red} \mathbf{b}_{0,j} \color{black}, \color{red} \mathbf{b}_{i,j} \color{black}, \color{red} \mathbf{b}_{m,j} 
+\color{black}, \color{red} \mathbf{b}_{i,0}\color{black} \color{black}, \color{red} \mathbf{b}_{i,n}$ in krajiščnih točk 
+$\color{blue} \mathbf{b}_{0,0} \color{black}, \color{blue} \mathbf{b}_{0,n}\color{black}, \color{blue} \mathbf{b}_{m,0}\color{black}, \color{blue} \mathbf{b}_{m,n}$. 
+ Notranje točke kontrolnega polinoma, lahko izračunamo na način kot v 
+ enačbi \refeq{continiusCons}: 
+ \begin{align*}
+   \mathbf{b}_{i,j} &= \left(1 - \frac{i}{m}\right) \color{red} \mathbf{b}_{0,j} \color{black}+\frac{i}{m}\color{red}\mathbf{b}_{m,j}\\
+    &+ \left(1 - \frac{j}{n}\right)\color{red}\mathbf{b}_{i,0} \color{black}+\frac{j}{n} \color{red}\mathbf{b}_{i,n}\ \\
    &- 
    \begin{bmatrix} 
       1 - \frac{i}{m} & \frac{i}{m}
    \end{bmatrix}
    \begin{bmatrix} 
-      \mathbf{b}_{0,0} & \mathbf{b}_{0,1}\\
-      \mathbf{b}_{1,0} & \mathbf{b}_{1,1}
+       \color{blue} \mathbf{b}_{0,0} &  \color{blue} \mathbf{b}_{0,1}\\
+       \color{blue} \mathbf{b}_{1,0} &  \color{blue} \mathbf{b}_{1,1}
    \end{bmatrix}
    \begin{bmatrix}
       1 - \frac{j}{n}\\
-      \frac{j}{n}
+      \frac{j}{n},
    \end{bmatrix}
 \end{align*}
-za $i = 1,2,\dots,m-1$ in $j = 1,2,\dots,n-1$. Izkaže se, da je kontrolni poligon ploskev, 
+kjer potrebujemo izračunati le kontrolne točke 
+$\mathbf{b}_{i,j}$ z indeski $i = 1,2,\dots,m-1$ in $j = 1,2,\dots,n-1$, 
+saj se robne kontrolne točke po konstrukciji ujemajo s podanimi.
+Izkaže se, da je kontrolni poligon ploskev, 
 ki jo omejujejo robne krivulje, enak kontrolnemu poligonu, ki ga dobimo z opisano metodo. 
 »Morda zanimivo: za določene oblike rabimo definirati samo robne krivulje«.
 
