@@ -9,6 +9,7 @@
 \usepackage{subfigure}
 \usepackage{mathtools}
 \usepackage{xcolor}
+\usepackage{url}
 \pagenumbering{roman}
 
 \begin{document}
@@ -39,20 +40,22 @@
 V seminarski nalogi bomo obravnavali ploskve, ki interpolirajo štiri mejne krivulje,
 ki so definirane vsaka na svoji stranici pravokotnika $[0,1]^2$. 
 Te ploskve bomo imenovali diskretne Coonsove ploskve, 
-ki jih bomo dobili z reševanjem linearnega sistema enačb.
-Pogledali si bomo tudi problem, ko imamo namesto pravokotnika podan 
-trikotnik, ki ga interpolirajo tri merjne krivulje.
+ki jih bomo določili z bilinearno interpolacijo kontrolih točk.
+Potem si bomo ogledali posplošitev
+Coonsovih ploskev na stalne ploskve, ki jih bomo dobili 
+z reševanjem linearnega sistema enačb. Pogledali si bomo tudi problem, ko imamo namesto štirih mejnih 
+krivulj podane samo tri robne krivulje, ki so definirane nad trikotnikom.
 
 Eden od najstarejših problemov v Računalniško podprtem geometrijskem oblikovanju je problem, 
 kjer imamo podane štiri robne krivulje, radi pa bi poiskali ploskev z danimi robnimi krivuljami. 
-Torej podane imamo robne krivulje $$x(u,0), x(u,1), x(0,v),  x(1,u),$$ kjer lahko brez škode za 
+Torej podane imamo robne krivulje $$x(u,0), x(u,1), x(0,v) ~\textnormal{in}~  x(1,u),$$ kjer lahko brez škode za 
 splošnost predpostavimo da je domena ploskve $x(u,v)$ enotni kvadrat, torej $(u,v) \in [0,1]^2$. 
 Znana rešitev tega problema je bilinearna mešana Coonsova ploskev, ki je interpolirana z robnimi 
 krivuljami, kot:
 \begin{align}
    \label{continiusCons}
    \mathbf{x}(u,v) =& (1-u)\mathbf{x}(0,v) +u\mathbf{x}(1,v) \notag \\
-    & + (1-v)\mathbf{x}(u,0) +v\mathbf{x}(u,v)   \\
+    & + (1-v)\mathbf{x}(u,0) +v\mathbf{x}(u,1)   \\
    & - 
    \begin{bmatrix} 
       1-u & u 
@@ -78,19 +81,20 @@ ki jih napenjajo kontrolne točke.
     kjer je $B_i^n(t) = \binom{n}{i} t^i (1-t)^{n-i}$, za $i = 0, 1,\dots,n$. 
 \end{definicija}
 
-Podobno lahko definiramo Bézierjeve ploskve na sledeč način.
+Podobno lahko definiramo Bézierjeve ploskve nad tenzorskim produktom
+na sledeč način.
 
 \begin{definicija}
     Bézierjevo ploskev $\mathbf{p} : [0,1]^2 \rightarrow \R^3$ iz tenzorskega produkta stopnje 
-    $(m, n) \in \N \times \N$ definiramo s parametrizacijo:
+    $(m, n) \in \N^2$ definiramo s parametrizacijo:
     $$\mathbf{p}(u,v) := \sum_{i=0}^m \sum_{j=0}^n \mathbf{b}_{i,j} B_i^m(u)B_j^n(v),$$
-    kjer sta $(u,v) \in [0,1]^2$ ter $(\frac{i}{m}, \frac{j}{n})$
+    kjer sta $(u,v) \in [0,1]^2$ ter so $(\frac{i}{m}, \frac{j}{n})$
     domenske točke, ki ustrezajo kontrolni točki $\mathbf{b}_{i,j}$.
 \end{definicija}
 
-
-Predpostavimo, da imamo podane robne kontrolne točke $\mathbf{b}_{i,j}$ 
-izračunane pri prametru $(u,v)$. Konmtrolne točke
+Diskretne Coonsove ploskve lahko interpretiramo kot Bézierjeve ploskve, ki so določene s štirimi robnimi
+Bézierjevimi krivuljami. Uporabljamo jih pri konstrukciji ploskve, kadar imamo podan le njen okvir.
+Kontrolne točke
 $$
 \begin{matrix}
    \mathbf{b}_{0,0}  &\mathbf{b}_{1,0} & \ldots &\mathbf{b}_{m-1,0} &\mathbf{b}_{m,0} \\
@@ -100,7 +104,7 @@ $$
    \mathbf{b}_{0,n}  &\mathbf{b}_{1,n} & \ldots &\mathbf{b}_{m-1,n} &\mathbf{b}_{m,n}. 
 \end{matrix}
 $$
-določajo štiri robne krivulje,  ki so definirane s pomočjo Bézierjeve krivulj
+določajo štiri robne krivulje s predpisi
 \begin{align*}
     &\mathbf{p}(u,0) =\sum_{i=0}^m \mathbf{b}_{i,0} B_i^m(u), \qquad
     \mathbf{p}(u,1) =\sum_{i=0}^m \mathbf{b}_{i,n} B_i^m(u),  \\
@@ -125,32 +129,32 @@ robnih točk $\color{red} \mathbf{b}_{0,j} \color{black}, \color{red} \mathbf{b}
 \color{black}, \color{red} \mathbf{b}_{i,0}\color{black} \color{black}, \color{red} \mathbf{b}_{i,n}$ in krajiščnih točk 
 $\color{blue} \mathbf{b}_{0,0} \color{black}, \color{blue} \mathbf{b}_{0,n}\color{black}, \color{blue} \mathbf{b}_{m,0}\color{black}, \color{blue} \mathbf{b}_{m,n}$. 
  Notranje točke kontrolnega polinoma, lahko izračunamo na način kot v 
- enačbi \refeq{continiusCons}: 
- \begin{align*}
-   \mathbf{b}_{i,j} &= \left(1 - \frac{i}{m}\right) \color{red} \mathbf{b}_{0,j} \color{black}+\frac{i}{m}\color{red}\mathbf{b}_{m,j}\\
+ enačbi \eqref{continiusCons}: 
+ \begin{align}
+   \label{diskertni}
+   \mathbf{b}_{i,j} &= \left(1 - \frac{i}{m}\right) \color{red} \mathbf{b}_{0,j} \color{black}+\frac{i}{m}\color{red}\mathbf{b}_{m,j} \notag \\
     &+ \left(1 - \frac{j}{n}\right)\color{red}\mathbf{b}_{i,0} \color{black}+\frac{j}{n} \color{red}\mathbf{b}_{i,n}\ \\
    &- 
    \begin{bmatrix} 
       1 - \frac{i}{m} & \frac{i}{m}
    \end{bmatrix}
    \begin{bmatrix} 
-       \color{blue} \mathbf{b}_{0,0} &  \color{blue} \mathbf{b}_{0,1}\\
+       \color{blue} \mathbf{b}_{0,0} &  \color{blue} \mathbf{b}_{0,1} \notag\\
        \color{blue} \mathbf{b}_{1,0} &  \color{blue} \mathbf{b}_{1,1}
    \end{bmatrix}
    \begin{bmatrix}
       1 - \frac{j}{n}\\
-      \frac{j}{n},
-   \end{bmatrix}
-\end{align*}
+      \frac{j}{n}
+   \end{bmatrix},
+\end{align}
 kjer potrebujemo izračunati le kontrolne točke 
 $\mathbf{b}_{i,j}$ z indeski $i = 1,2,\dots,m-1$ in $j = 1,2,\dots,n-1$, 
 saj se robne kontrolne točke po konstrukciji ujemajo s podanimi.
-Izkaže se, da je kontrolni poligon ploskev, 
-ki jo omejujejo robne krivulje, enak kontrolnemu poligonu, ki ga dobimo z opisano metodo. 
-»Morda zanimivo: za določene oblike rabimo definirati samo robne krivulje«.
 
-Ploskev, ki jo dobimo s tako dobljenimi kontrolnimi točkami $\mathbf{b}_{i,j}$
+\begin{definicija}
+Ploskev, ki jo dobimo s tako pridobljenimi kontrolnimi točkami $\mathbf{b}_{i,j}$
 imenujemo Coonsova ploskev.
+\end{definicija}
 
 Primer take ploskve je slika \ref{fig:whatever}, kjer je prikazan 
 rob kontrolnega poligona, notranje točke kontrolnega poligona in 
@@ -159,14 +163,14 @@ Bézierjeva ploskev definirana nad kontrolnim poligonom
 \begin{figure}[ht!]
    \centering
    \subfigure[Primer robnih točk]{
-   \includegraphics[width=0.45\textwidth]{ogrodje.png}
+   \includegraphics[width=0.4\textwidth]{ogrodje.png}
    }
    \subfigure[Primer ogrodja]{
-   \includegraphics[width=0.45\textwidth]{dodatne_kont_t.png}
+   \includegraphics[width=0.4\textwidth]{dodatne_kont_t.png}
    }
    
    \subfigure[Coonsova ploskv na ogrodju]{
-   \includegraphics[width=0.5\textwidth]{primer_krivulje.png}
+   \includegraphics[width=0.4\textwidth]{primer_krivulje.png}
    }   
    \caption{Primer konstrukcije Coonsove ploskve}
 \label{fig:whatever}
@@ -196,26 +200,29 @@ Bézierjeva ploskev definirana nad kontrolnim poligonom
 %\end{equation}
 
 Denimo, da imamo podano Coonsova ploskev definirana nad domeno $D = [0,1]^2$. 
-Izberemo dve točki $(u_0,v_0)$ in $(u_1,v_1)$ ki razpenjata pravokotnik $R$ v domeni $D$. 
+Izberemo si dve točki $(u_0,v_0)$ in $(u_1,v_1)$ ki razpenjata pravokotnik $R$ v domeni $D$. 
 Štiri mejne krivulje pod-Coonsove ploskve definirane na $R$ se preslikajo 
-v štiri krivulje na prvotni Coonsovi ploskvi. Izkaže se da pod-Coonsova ploskev 
-definirana na $R$ je prvotna Coonsova ploskev zožana na območje $R$. To načelo 
-lahko uporabimo na diskretni $3 \times 3$ Coonsovi ploskivi
+v štiri krivulje na prvotni Coonsovi ploskvi. Izkaže se, da je pod-Coonsova ploskev 
+definirana na $R$ enaka Coonsovi ploskvi zožani na območje $R$. 
+Oglejmo si $3 \times 3$ pod-Coonsovo ploskev
+%To načelo 
+%lahko uporabimo na diskretni $3 \times 3$ Coonsovi ploskivi
 $$
 \begin{matrix} 
    \mathbf{b}_{i-1,j-1} & \mathbf{b}_{i-1,j} & \mathbf{b}_{i-1,j+1}\\
    \mathbf{b}_{i,j-1} & \mathbf{b}_{i,j} & \mathbf{b}_{i,j+1}\\
-   \mathbf{b}_{i+1,j-1} & \mathbf{b}_{i+1,j} & \mathbf{b}_{i+1,j+1}
+   \mathbf{b}_{i+1,j-1} & \mathbf{b}_{i+1,j} & \mathbf{b}_{i+1,j+1}.
 \end{matrix}
 $$ 
-Če poznamo robne točke lahko notranjo točko $\mathbf{b}_{i,j}$ določimo na sledeč način: 
+V primeru da poznamo robne točke lahko notranjo točko $\mathbf{b}_{i,j}$
+določimo z enačbo \eqref{diskertni}:  
 \begin{align*}
    \mathbf{b}_{i,j} =& -\frac{1}{4}(\mathbf{b}_{i-1,j-1} + \mathbf{b}_{i+1,j-1} +
       \mathbf{b}_{i-1,j+1} + \mathbf{b}_{i+1,j+1}) \\
       &+\frac{1}{2}(\mathbf{b}_{i-1,j} + \mathbf{b}_{i,j-1}+
       \mathbf{b}_{i,j+1} + \mathbf{b}_{i+1,j}).\\
 \end{align*}
-kar lahko krajše zapišemo z masko: 
+To lahko zapišemo bolj kompaktno s pomočjo maske:
 $$
 \mathbf{b}_{i,j} = \frac{1}{4} \times 
 \begin{matrix*}[r]
@@ -224,11 +231,15 @@ $$
 -1 && 2 && -1
 \end{matrix*}
 $$
-Ker je mreža sestavljena iz $(m+1)\times(n+1)$ kontrolnih točk, dane pa imamo samo robne
-točke lahko ostalih $(m-1)\times(n-1)$ enlično določimo z zgornjo masko. Določitev točk se prvede
-na reševanje sistema $(m+1)\times(n+1)$ linearnih enačb.
+Če zgornjo masko uporabimo na vseh kontrolnih točkah $\mathbf{b}_{i,j}$ $i = 1,2,\dots,m-1$ in $j = 1,2,\dots,n-1$
+dobimo $(m-1)(n-1)$ linearnih enačb.
+Ker je mreža sestavljena iz $(m+1)(n+1)$ kontrolnih točk, dane pa imamo samo robne
+točke lahko ostalih $(m-1)(n-1)$ enlično določimo s pomočjo sistema
+linearnih enačb. Določitev točk se tako prvede
+na reševanje sistema $(m+1)(n+1)$ linearnih enačb, kjer so v sistemu robne točke že določene.
 
-Oglejmo si $3 \times 3$ masko s splošnimi parametri, kjer se element izraža na sledeč način:
+Oglejmo si $3 \times 3$ masko s splošnimi parametri, kjer se  kontrolna točka 
+$\mathbf{b}_{i,j}$ izraža na sledeč način:
 $$
 \mathbf{b}_{i,j} =  \quad 
 \begin{matrix*}[r]
@@ -238,8 +249,12 @@ $$
 \end{matrix*}
 $$
 V primeru da sta $(\alpha, \beta) = (-0.25, 0.5)$ dobimo Coonsovo
-ploskvo. Privzeli bomo, da velja $4\alpha + 4\beta = 1$, saj 
-tako ohranjamo afinost maske. S perturbiranjem parametrov 
+ploskvo. 
+Podobno kot prej ponovno rešimo sistem $(m+1)(n+1)$ linearnih enačb, a tokrat
+s parametroma $\alpha$ in $\beta$.
+Privzeli bomo, da velja $4\alpha + 4\beta = 1$, saj 
+tako ohranjamo afinost maske. 
+S perturbiranjem parametrov 
 $\alpha$ in $\beta$ dobimo torej nov razred kontrolnih shem, imenujemo jih stalne 
 krivulje (angl. \textit{permanence patches}). V članku \cite{DCP}  so raziskovali
 vpliv $\alpha$ na optimalno oblike ploskve. Ugotovili so, da za izbrana $m$ in $n$
@@ -248,27 +263,30 @@ ni vedno ene optimalne vrednosti za $\alpha$, ki bo dala dobro obliko ploskve.
 \section{Stalne Coonsove ploskve}
 \label{ch:4}
 
-Ena kontrolna točka navadne Coonsove ploskve je odvisna od osem obrobnih točk, 
-torej gre za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah 
+Po definiciji diskretne Coonsove ploskve je ena kontrolna točka odvisna le od osemih 
+robnih in krajiščih točk, torej gre zgolj za lokalno odvisnost. V primeru ko govorimo o stalnih ploskvah 
 ($\alpha \neq  -0.25$), je točka odvisna od vseh mejnih točk, zato govorimo 
 o globalni odvisnosti. Ta odvisnost nam potencialno lahko pripomore pri ustvarjanju 
-``boljše'' krivulje.
+``boljše''``boljše'' krivulje.
 
 Oglejmo si še nekaj primerov ploskev pri različnih parametrih $\alpha$ in $\beta$.
-V primeru, da v sliki \ref{fig:whatever} pustimo okvir kontrolnih točk enako,
+V primeru, da v sliki \ref{fig:whatever} pustimo okvir kontrolnih točk enak,
 namesto parametra $\alpha =- 0.25$ pa uporabimo 
-parametra $\alpha = -0.26$ ter $\alpha = -0.23$ in rešimo sistem
+parametre $\alpha = -0.26$, $\alpha = -0.23$ ter $\alpha = 0$ in rešimo sistem
 linearnih enačb dobimo krivulje prikazane na sliki \ref{fig:coons_pospl}.
 
 \begin{figure}[ht!]
    \centering
    \subfigure[Stalna krivulja pridobljena s parametrom $\alpha = -0.26$]{
-   \includegraphics[width=0.45\textwidth]{square_26.png}
+   \includegraphics[width=0.4\textwidth]{square_26.png}
    }
    \subfigure[Stalna krivulja pridobljena s parametrom $\alpha = -0.26$]{
-   \includegraphics[width=0.45\textwidth]{square_23.png}
+   \includegraphics[width=0.4\textwidth]{square_23.png}
    }
-   \caption{Stalni krivulji pridobljeni z reševanjem sistemov linearnih enačb}
+   \subfigure[Stalna ``minimalna'' krivulja pridobljena s parametrom $\alpha = 0$]{
+   \includegraphics[width=0.4\textwidth]{square_0.png}
+   }
+   \caption{Stalne krivulje pridobljene z reševanjem sistemov linearnih enačb}
 \label{fig:coons_pospl}
 \end{figure}
 
@@ -280,14 +298,13 @@ $$\mathbf{p}_{uu} + \mathbf{p}_{vv} = 0.$$
 
 \section{Trikotne stalne Coonsove ploskve}
 
-Oglejmo si primer, ko imamo krivulje definirane nad trikotnikom 
-namesto nad pravokotnikom kot v razdelkih \ref{ch:3} in \ref{ch:4}.
+Oglejmo si primer, ko imamo tri robne krivulje definirane nad trikotnikom 
+nameststo štiri robne krivulje nad pravokotnikom.
 Pojavi se naslednje vprašanje, če imamo podane tri robne kontrolne poligone 
 ki razpenjajo zunanjost trikotnika, ali obstaja  ``dobra''
 kontolna mreža, ki zapolni omejeno območje. 
 Podobno kot v razdelkih \ref{ch:3} in \ref{ch:4} lahko uporabimo načelo 
 stalnosti za masko:
-
 $$
 \mathbf{b}_{\mathbf{i}} =  \quad 
 \begin{matrix*}[r]
@@ -299,22 +316,25 @@ $$
 $$
 kjer je zaradi pogoja afinoste ponovno zahtevamo,da je $3\alpha + 6\beta = 1$.
 
+Načelo stalosti uporabimo za vse $\mathbf{b}_{\mathbf{i}}$, kjer je $\mathbf{i} >0$,
+ker so robne točke že podane. 
 Podbono kot prej rešimo sistem z $\binom{m+1}{2}$ linearnih enačb, 
 kjer je $m$ število kontrolnih točk na eni stranici trikotnika.
+Robne točke v sistemu so ponovno že določene.
 
 Na sliki \ref{fig:trikotne} vidimo tri možne oblike stalne trikotne
 krpe s parametri $0,-1/9$ ter $-1/6$.
 
 \begin{figure}[ht!]
    \centering
-   \subfigure[Primer stalne trikotne krpe dobljene s parametrom $\alpha = -1/6$]{
+   \subfigure[Stalna trikotna krpa pridobljena s parametrom $\alpha = -1/6$]{
    \includegraphics[width=0.45\textwidth]{trikotne_1_6.png}
    }
-   \subfigure[Primer stalne trikotne krpe dobljene s parametrom $\alpha = -1/9$]{
+   \subfigure[Stalna trikotna krpa pridobljena s parametrom $\alpha = -1/9$]{
    \includegraphics[width=0.45\textwidth]{trikotne_1_9.png}
    }
    
-   \subfigure[Primer stalne trikotne krpe dobljene s parametrom $\alpha = 0$]{
+   \subfigure[Stalna ``minimalna'' trikotna krpa pridobljene s parametrom $\alpha = 0$]{
    \includegraphics[width=0.5\textwidth]{trikotne_0.png}
    }   
    \caption{Stalne trikotne krpe pridobljene z reševanjem sistemov enačb.}
@@ -337,5 +357,7 @@ si vpliv parametrov stalnih Coonsovih ploskev in jih grafično prikazali.
 \begin{thebibliography}{99}
    \bibitem{DCP}
    G.~Farin, F.~Hansford, \emph{Discrete Coons patches}, 
+   \bibitem{GR}
+   J.~Grošelj \url{https://users.fmf.uni-lj.si/groseljj/mat-rpgo/2022-2023/rpgo_zbirka_nalog.pdf#naloga12}
 \end{thebibliography}
 \end{document}
