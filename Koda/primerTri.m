@@ -28,7 +28,7 @@ BX = filltriangle(Bx, a);
 BY = filltriangle(By, a);
 BZ = filltriangle(Bz, a);
 
-[TRI, U] = trimeshgrid(100);
+[TRI, U] = trimeshgrid(50);
 b = bezier3(BX,BY,BZ,U);
 
 figure(1)
@@ -44,7 +44,7 @@ BX = filltriangle(Bx, a);
 BY = filltriangle(By, a);
 BZ = filltriangle(Bz, a);
 
-[TRI, U] = trimeshgrid(100);
+[TRI, U] = trimeshgrid(50);
 b = bezier3(BX,BY,BZ,U);
 
 figure(2)
@@ -60,7 +60,7 @@ BX = filltriangle(Bx, a);
 BY = filltriangle(By, a);
 BZ = filltriangle(Bz, a);
 
-[TRI, U] = trimeshgrid(100);
+[TRI, U] = trimeshgrid(50);
 b = bezier3(BX,BY,BZ,U);
 
 figure(3)
